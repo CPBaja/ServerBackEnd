@@ -6,6 +6,6 @@ const path = require("path");
 
 module.exports = (app) => {
   app.get("*", (req, res) => {
-      res.sendFile("404.html", {root:path.join(appRoot, "www")});
+      res.status(404).sendFile("404.html", {root:path.join(appRoot, "www")});
   });
 };

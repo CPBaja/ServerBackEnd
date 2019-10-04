@@ -13,8 +13,8 @@ app.use(express.json());
 console.log("Registering HTTP Path Handlers:");
 let files = fs.readdirSync(pathHandlerRoot);
 files.forEach((v) => {
-    let h = require(pathHandlerRoot + v);
     console.log(`\tRegistering ${v}`);
+    let h = require(pathHandlerRoot + v);
     h(app); //Allow each handler to init by passing the express app.
 });
 
