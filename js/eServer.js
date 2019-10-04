@@ -10,7 +10,7 @@ let app = express();
 app.use(express.json());
 
 //Discover + allow path handlers to register with the express app
-console.log("Registering Path Handlers:");
+console.log("Registering HTTP Path Handlers:");
 let files = fs.readdirSync(pathHandlerRoot);
 files.forEach((v) => {
     let h = require(pathHandlerRoot + v);

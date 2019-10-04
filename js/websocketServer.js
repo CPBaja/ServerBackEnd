@@ -16,3 +16,4 @@ function handleMessage(ws, message){
 
 }
 console.log("WebSocket listening at port 81!");
+//TODO: MAKE WS HANDLERS MODULAR LIKE HTTP ONES.
