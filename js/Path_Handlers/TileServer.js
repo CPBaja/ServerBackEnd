@@ -1,6 +1,7 @@
 const request = require("request");
 const path = require("path");
 const fs = require("fs");
+const DirWatch = require(path.join(appRoot, "/js/Util/DirWatch.js"));
 
 const providerTemplate = process.env.TILE_PROVIDER_TEMPLATE;
 const apiKey = process.env.TILE_PROVIDER_API_KEY || "";
@@ -10,7 +11,7 @@ const tileDir = "tiles";
 const errorTilePath = process.env.ERROR_TILE_PATH;
 
 const tileIndex = fs.readdirSync(tileDir); //A cached list of stored tiles
-
+global["tileIndex"] = tileIndex;
 
 module.exports = (app) => {
     app.get("/t/:tileSet/:z/:x/:y", (req, res) =>
@@ -19,8 +20,8 @@ module.exports = (app) => {
         let tileId = getTileId(tileSet, z, x, y); //Attempt to generate an ID. Also checks param validity. Undefined if malformed
 
         //first, check to make sure request is in correct format.
-        if(!tileId){ //Malformed tile request, fail it with 400.
-            console.log(`MALFORMED tile request for ${tileSet}/${z}/${x}/${y}`);
+        if(!tileId){ //Check if undefined. If so, URL was malformed and parsing failed. Fail and return 400.
+            log.warn(`MALFORMED tile request for ${tileSet}/${z}/${x}/${y}`);
             res.status(400).send("Malformed Tile Request");
             return;
         }
@@ -38,7 +39,6 @@ module.exports = (app) => {
         }
 
         /*We don't have the file locally, so try to proxy it in from our tile provider*/
-
         let providerTileUrl = Template(providerTemplate, {tileSet:tileSet, z:z, x:x, y:y, apiKey:apiKey});
         request.get(providerTileUrl)
 
@@ -48,32 +48,15 @@ module.exports = (app) => {
             })
             .on("response", () => console.log(`Proxied tile request for ${tileSet}/${z}/${x}/${y}`))
             .pipe(res);
-
-
-
-
-
-
-
-
     });
+
+    //app.get()
 };
 
 //Setup a watch on the directory to keep our cache/index updated with changes to the tile directory.
-fs.watch(tileDir, {},(eventType, fileName) => {
-    if(eventType === "rename"){ //Fired when file added/removed/renamed in tiles. Used to keep index updated.
-
-        //If file exists, make sure it's not in index already and add it.
-        if(fs.existsSync(path.join(tileDir, fileName)) && !tileIndex.includes(fileName)) {
-            tileIndex.push(fileName);
-
-            //If the file has been removed, check if it's in the index and remove it if so.
-        } else if (!fs.existsSync(path.join(tileDir, fileName)) && tileIndex.includes(fileName)) {
-            let removeIndex = tileIndex.indexOf(fileName);
-            tileIndex.splice(removeIndex, 1);
-        }
-    }
-});
+let dirWatch = new DirWatch(tileDir);
+dirWatch.on("added", (file) => tileIndex.push(file));
+dirWatch.on("removed", (file) => tileIndex.splice(tileIndex.indexOf(file), 1));
 
 function getTileId(tileSet, z, x, y){
     if(tileSet && !isNaN(z) && !isNaN(x) && !isNaN(y)){ //If all params exist, generate the filename. Otherwise, return undefined.

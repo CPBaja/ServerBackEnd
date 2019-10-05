@@ -1,0 +1,124 @@
+{"message":"Registering HTTP Handlers","level":"info"}
+2019-10-04T21:24:41.376Z | Registering HTTP Handlers
+2019-10-04T21:25:43.491Z | WebSocket listening at port 81!
+2019-10-04T21:25:43.642Z | Registering HTTP Handlers
+2019-10-04T21:25:43.642Z | 	Registering statics.js
+2019-10-04T21:25:43.644Z | 	Registering TileServer.js
+2019-10-04T21:25:43.860Z | 	Registering WebsocketQuery.js
+2019-10-04T21:26:39.230Z | WebSocket listening at port 81!
+2019-10-04T21:26:39.370Z | ****************Registering HTTP Handlers****************
+2019-10-04T21:26:39.370Z | 	Registering statics.js
+2019-10-04T21:26:39.371Z | 	Registering TileServer.js
+2019-10-04T21:26:39.582Z | 	Registering WebsocketQuery.js
+2019-10-04T21:27:57.891Z | WebSocket listening at port 81!
+2019-10-04T21:27:58.079Z | ****************Registering HTTP Handlers****************
+2019-10-04T21:27:58.080Z | Registering statics.js
+2019-10-04T21:27:58.082Z | Registering TileServer.js
+2019-10-04T21:27:58.374Z | Registering WebsocketQuery.js
+2019-10-04T21:28:09.615Z | MALFORMED tile request for kek/1/2/s
+2019-10-04T21:28:59.365Z | [32mWebSocket listening at port 81![39m
+2019-10-04T21:28:59.502Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-04T21:28:59.502Z | [32mRegistering statics.js[39m
+2019-10-04T21:28:59.504Z | [32mRegistering TileServer.js[39m
+2019-10-04T21:28:59.712Z | [32mRegistering WebsocketQuery.js[39m
+2019-10-04T21:29:07.123Z | [33mMALFORMED tile request for kek/1/2/s[39m
+2019-10-04T22:25:39.369Z | [32mWebSocket listening at port 81![39m
+2019-10-04T22:25:39.521Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-04T22:25:39.521Z | [32mRegistering statics.js[39m
+2019-10-04T22:25:39.523Z | [32mRegistering TileServer.js[39m
+2019-10-04T22:25:39.758Z | [32mRegistering WebsocketQuery.js[39m
+2019-10-04T22:25:39.765Z | [32mApp listening on port 80![39m
+2019-10-05T04:20:32.764Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:20:32.767Z | [32mRegistering statics.js[39m
+2019-10-05T04:20:32.771Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:20:33.050Z | [32mApp listening on port 80![39m
+2019-10-05T04:51:05.750Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:51:05.752Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T04:51:05.753Z | [32mRegistering statics.js[39m
+2019-10-05T04:51:05.755Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:51:06.030Z | [32mApp listening on port 80![39m
+2019-10-05T04:51:46.439Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:51:46.442Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T04:51:46.443Z | [32mRegistering statics.js[39m
+2019-10-05T04:51:46.444Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:51:46.743Z | [32mApp listening on port 80![39m
+2019-10-05T04:53:53.826Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:53:53.828Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T04:53:53.828Z | [32mRegistering statics.js[39m
+2019-10-05T04:53:53.830Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:53:54.068Z | [32mApp listening on port 80![39m
+2019-10-05T04:54:33.331Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:54:33.333Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T04:54:33.334Z | [32mRegistering statics.js[39m
+2019-10-05T04:54:33.336Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:54:33.588Z | [32mApp listening on port 80![39m
+2019-10-05T04:55:33.899Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T04:55:33.902Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T04:55:33.903Z | [32mRegistering statics.js[39m
+2019-10-05T04:55:33.904Z | [32mRegistering TileServer.js[39m
+2019-10-05T04:55:34.148Z | [32mApp listening on port 80![39m
+2019-10-05T05:04:37.811Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:04:37.813Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:04:37.814Z | [32mRegistering statics.js[39m
+2019-10-05T05:04:37.815Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:04:38.091Z | [32mApp listening on port 80![39m
+2019-10-05T05:05:27.767Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:05:27.769Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:05:27.770Z | [32mRegistering statics.js[39m
+2019-10-05T05:05:27.771Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:05:28.027Z | [32mApp listening on port 80![39m
+2019-10-05T05:05:55.456Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:05:55.458Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:05:55.458Z | [32mRegistering statics.js[39m
+2019-10-05T05:05:55.460Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:05:55.704Z | [32mApp listening on port 80![39m
+2019-10-05T05:06:48.256Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:06:48.258Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:06:48.259Z | [32mRegistering statics.js[39m
+2019-10-05T05:06:48.260Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:06:48.502Z | [32mApp listening on port 80![39m
+2019-10-05T05:07:10.735Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:07:10.737Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:07:10.738Z | [32mRegistering statics.js[39m
+2019-10-05T05:07:10.739Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:07:11.016Z | [32mApp listening on port 80![39m
+2019-10-05T05:08:24.823Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:08:24.825Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:08:24.826Z | [32mRegistering statics.js[39m
+2019-10-05T05:08:24.827Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:08:25.073Z | [32mApp listening on port 80![39m
+2019-10-05T05:10:00.888Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:10:00.891Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:10:00.891Z | [32mRegistering statics.js[39m
+2019-10-05T05:10:00.893Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:10:01.145Z | [32mApp listening on port 80![39m
+2019-10-05T05:10:25.963Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:10:25.966Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:10:25.966Z | [32mRegistering statics.js[39m
+2019-10-05T05:10:25.968Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:10:26.268Z | [32mApp listening on port 80![39m
+2019-10-05T05:10:41.530Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:10:41.533Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:10:41.534Z | [32mRegistering statics.js[39m
+2019-10-05T05:10:41.536Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:10:41.784Z | [32mApp listening on port 80![39m
+2019-10-05T05:18:48.879Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:18:48.881Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:18:48.882Z | [32mRegistering statics.js[39m
+2019-10-05T05:18:48.883Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:18:49.142Z | [32mApp listening on port 80![39m
+2019-10-05T05:25:10.966Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:25:10.968Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:25:10.969Z | [32mRegistering statics.js[39m
+2019-10-05T05:25:10.971Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:25:11.263Z | [32mApp listening on port 80![39m
+2019-10-05T05:53:11.509Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:53:11.512Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:53:11.513Z | [32mRegistering statics.js[39m
+2019-10-05T05:53:11.514Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:53:11.764Z | [32mApp listening on port 80![39m
+2019-10-05T05:53:26.663Z | [32m****************Registering HTTP Handlers****************[39m
+2019-10-05T05:53:26.666Z | [32mRegistering ServerEvents.js[39m
+2019-10-05T05:53:26.666Z | [32mRegistering statics.js[39m
+2019-10-05T05:53:26.668Z | [32mRegistering TileServer.js[39m
+2019-10-05T05:53:26.903Z | [32mApp listening on port 80![39m
