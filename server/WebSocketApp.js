@@ -20,4 +20,6 @@ function registerWebsocketHandlers(dir, wss){
         let h = require(path.join(dir, v));
         h(wss); //Allow each handler to init by passing the express app.
     });
+
+    imc.emit("buildTileIndex");
 }

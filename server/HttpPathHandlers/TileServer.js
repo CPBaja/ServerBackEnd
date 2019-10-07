@@ -12,8 +12,10 @@ const tileDir = "tiles";
 const errorTilePath = path.join(arp+"", process.env.ERROR_TILE_PATH);
 const log = require(logger)("Tile Server");
 
-const tileIndex = fs.readdirSync(tileDir); //A cached list of stored tiles
-global["tileIndex"] = tileIndex;
+let tileIndex; //A cached list of stored tiles
+buildTileIndex();
+
+imc.on("buildTileIndex", () => setImmediate(buildTileIndex));
 
 module.exports = (app) => {
     app.get("/t/:tileSet/:z/:x/:y", (req, res) =>
@@ -57,6 +59,10 @@ module.exports = (app) => {
 let dirWatch = new DirWatch(tileDir);
 dirWatch.on("added", (file) => tileIndex.push(file));
 dirWatch.on("removed", (file) => tileIndex.splice(tileIndex.indexOf(file), 1));
+
+function buildTileIndex(){
+    tileIndex = fs.readdirSync(tileDir);
+}
 
 function getTileId(tileSet, z, x, y){
     if(tileSet && !isNaN(z) && !isNaN(x) && !isNaN(y)){ //If all params exist, generate the filename. Otherwise, return undefined.
