@@ -1,14 +1,15 @@
 const request = require("request");
 const path = require("path");
-const fs = require("fs");
+const fs = require("graceful-fs");
 const DirWatch = require("../Util/DirWatch");
+const arp = require("app-root-path");
 
 const providerTemplate = process.env.TILE_PROVIDER_TEMPLATE;
 const apiKey = process.env.TILE_PROVIDER_API_KEY || "";
 const tileSets = process.env.TILE_PROVIDER_TILESETS.split(",");
 const defaultTileSet = tileSets[0];
 const tileDir = "tiles";
-const errorTilePath = process.env.ERROR_TILE_PATH;
+const errorTilePath = path.join(arp+"", process.env.ERROR_TILE_PATH);
 const log = require(logger)("Tile Server");
 
 const tileIndex = fs.readdirSync(tileDir); //A cached list of stored tiles
@@ -34,7 +35,7 @@ module.exports = (app) => {
         let tileFile = `${tileId}.png`;
 
         if(tileIndex.includes(tileFile)){ //If we have the tile locally, just serve it.
-            res.sendFile(path.join(tileDir, tileFile));
+            res.sendFile(path.join(arp+"", tileDir, tileFile));
             log.debug(`Tile request for ${tileSet}/${z}/${x}/${y} served locally`);
             return;
         }

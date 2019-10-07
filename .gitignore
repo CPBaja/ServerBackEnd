@@ -1,4 +1,4 @@
 # Project exclude paths
 /node_modules/
-src/server/tiles/*
-!src/server/tiles/.gitkeep
+tiles/*
+!tiles/.gitkeep

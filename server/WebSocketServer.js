@@ -24,18 +24,18 @@ class WebSocketServer extends EventEmitter{
     }
 
     message(wss, ws, data){
-        log.http(`Received message from ${ws._socket.remoteAddress}: ${data}`);
+        log.http(`Received message from ${ws._socket.remoteAddress}: "${data}"`);
         this.emit("message", wss, ws, data);
         try{
             let parsedMessage = JSON.parse(data);
             if(parsedMessage.channel){
                 this.emit(parsedMessage.channel, wss, ws, parsedMessage);
             } else {
-                log.warn(`Channel-less JSON received from ${ws._socket.remoteAddress}`);
+                log.warn(`Key "channel" missing from JSON received from ${ws._socket.remoteAddress}`);
                 this.emit("noChannel", wss, ws, data);
             }
         }catch (e) {
-            log.warn(`Unparseable message received from ${ws._socket.remoteAddress}`);
+            log.warn(`Invalid message received from ${ws._socket.remoteAddress}: "${data}"`);
             this.emit("parseError", wss, ws, data);
         }
     }
