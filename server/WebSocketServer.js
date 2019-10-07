@@ -29,7 +29,7 @@ class WebSocketServer extends EventEmitter{
         try{
             let parsedMessage = JSON.parse(data);
             if(parsedMessage.channel){
-                this.emit(parsedMessage.channel, wss, ws, data);
+                this.emit(parsedMessage.channel, wss, ws, parsedMessage);
             } else {
                 log.warn(`Channel-less JSON received from ${ws._socket.remoteAddress}`);
                 this.emit("noChannel", wss, ws, data);
