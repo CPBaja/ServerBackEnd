@@ -7,6 +7,7 @@ const log = require(logger)("WSS");
 const EventEmitter = require("events");
 const webSocket = require("ws");
 
+
 class WebSocketServer extends EventEmitter{
     constructor(WssOptions){
         super();
