@@ -1,6 +1,8 @@
 /*
-* Responsible for registering websocket message handlers.
-* */
+* Essentially a nice wrapper around the websocket to make my life easier.
+* Basically, extracts the message "channel" from every message and fires events registered on it.
+* Realistically only saves me one if statement in each handler and like 2 globals but its worth it.
+*/
 const log = require(logger)("WSS");
 const EventEmitter = require("events");
 const webSocket = require("ws");
