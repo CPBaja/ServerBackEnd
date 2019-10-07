@@ -9,3 +9,6 @@ require("./Database.js");
 /*HTTP SERVER SETUP + START*/
 require("./Server");
 
+console.log("INDEX.js");
+console.log(JSON.stringify({channel: "topkek"}));
+

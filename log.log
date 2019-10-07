@@ -1,6 +1,16 @@
-2019-10-07T07:54:05.163Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-07T07:54:05.164Z | [Express]: Registering ServerEvents.js
-2019-10-07T07:54:05.167Z | [Express]: Registering Statics.js
-2019-10-07T07:54:05.169Z | [Express]: Registering TileServer.js
-2019-10-07T07:54:05.443Z | [WSS]: Starting WSS
-2019-10-07T07:54:05.451Z | [Server]: App listening on port 80!
+2019-10-07T14:30:40.276Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-07T14:30:40.277Z | [Express]: Registering ServerEvents.js
+2019-10-07T14:30:40.279Z | [Express]: Registering Statics.js
+2019-10-07T14:30:40.280Z | [Express]: Registering TileServer.js
+2019-10-07T14:30:40.496Z | [WSS]: Starting WSS
+2019-10-07T14:30:40.496Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-07T14:30:40.497Z | [WebSocketApp]: Registering TopKek.js
+2019-10-07T14:30:40.507Z | [Server]: App listening on port 80!
+2019-10-07T14:30:48.837Z | [WSS]: Accepted connection from ::1
+2019-10-07T14:30:51.227Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:30:54.432Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:30:55.176Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:30:56.556Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:30:57.313Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:31:00.268Z | [WSS]: Received message from ::1: {"channel":"topkek"}
+2019-10-07T14:31:01.441Z | [WSS]: Received message from ::1: {"channel":"topkek"}

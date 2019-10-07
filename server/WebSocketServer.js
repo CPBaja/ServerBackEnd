@@ -9,8 +9,8 @@ class WebSocketServer extends EventEmitter{
     constructor(WssOptions){
         super();
         log.info("Starting WSS");
-        this._wss = new webSocket.Server( WssOptions);
-        this._wss.on("connection", (ws) => this.connection(this._wss, ws));
+        this.wss = new webSocket.Server( WssOptions);
+        this.wss.on("connection", (ws) => this.connection(this.wss, ws));
     }
 
     connection(wss, ws){
@@ -26,15 +26,11 @@ class WebSocketServer extends EventEmitter{
         this.emit("message", wss, ws, data);
         try{
             let parsedMessage = JSON.parse(data);
-            //console.log(parsedMessage);
-            //parsedMessage = {type: "topkek"};
-            console.log(parsedMessage.type);
-            if(parsedMessage.type){
-                console.log("sdadas");
-                this.emit(parsedMessage.type, wss, ws, data);
+            if(parsedMessage.channel){
+                this.emit(parsedMessage.channel, wss, ws, data);
             } else {
-                log.warn(`Typeless JSON received from ${ws._socket.remoteAddress}`);
-                this.emit("noType", wss, ws, data);
+                log.warn(`Channel-less JSON received from ${ws._socket.remoteAddress}`);
+                this.emit("noChannel", wss, ws, data);
             }
         }catch (e) {
             log.warn(`Unparseable message received from ${ws._socket.remoteAddress}`);
