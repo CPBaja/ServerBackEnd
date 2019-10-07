@@ -7,8 +7,9 @@ const providerTemplate = process.env.TILE_PROVIDER_TEMPLATE;
 const apiKey = process.env.TILE_PROVIDER_API_KEY || "";
 const tileSets = process.env.TILE_PROVIDER_TILESETS.split(",");
 const defaultTileSet = tileSets[0];
-const tileDir = "server/tiles";
+const tileDir = "tiles";
 const errorTilePath = process.env.ERROR_TILE_PATH;
+const log = require(logger)("Tile Server");
 
 const tileIndex = fs.readdirSync(tileDir); //A cached list of stored tiles
 global["tileIndex"] = tileIndex;
@@ -33,7 +34,7 @@ module.exports = (app) => {
         let tileFile = `${tileId}.png`;
 
         if(tileIndex.includes(tileFile)){ //If we have the tile locally, just serve it.
-            res.sendFile(path.join(appRoot, tileDir, tileFile));
+            res.sendFile(path.join(tileDir, tileFile));
             log.debug(`Tile request for ${tileSet}/${z}/${x}/${y} served locally`);
             return;
         }
@@ -44,14 +45,10 @@ module.exports = (app) => {
 
             .on("error", () =>{ //If the proxy fails, serve our error image.
                 log.debug("Error proxying image from provider, sending the error tile.");
-                res.sendFile(path.join(appRoot, errorTilePath));
+                res.sendFile(errorTilePath);
             })
             .on("response", () => log.debug(`Proxied tile request for ${tileSet}/${z}/${x}/${y}`))
             .pipe(res);
-    });
-
-    app.get("/t/download", (req, res) => {
-
     });
 };
 

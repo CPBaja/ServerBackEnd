@@ -1,6 +1,6 @@
-2019-10-06T20:02:15.335Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-06T20:02:15.336Z | [Express]: Registering ServerEvents.js
-2019-10-06T20:02:15.339Z | [Express]: Registering Statics.js
-2019-10-06T20:02:15.341Z | [Express]: Registering TileServer.js
-2019-10-06T20:02:15.592Z | [WSS]: Registering WSS
-2019-10-06T20:02:15.601Z | [Server]: App listening on port 80!
+2019-10-07T07:54:05.163Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-07T07:54:05.164Z | [Express]: Registering ServerEvents.js
+2019-10-07T07:54:05.167Z | [Express]: Registering Statics.js
+2019-10-07T07:54:05.169Z | [Express]: Registering TileServer.js
+2019-10-07T07:54:05.443Z | [WSS]: Starting WSS
+2019-10-07T07:54:05.451Z | [Server]: App listening on port 80!

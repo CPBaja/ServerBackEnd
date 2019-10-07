@@ -1,7 +1,8 @@
 const http = require("http");
-const webSocket = require("ws");
+const webSocketServer = require("./WebSocketServer.js");
 const express = require("express");
 const log = require(logger)("Server");
+const webSocket = require("ws");
 
 
 const port = process.env.HTTP_PORT;
@@ -10,14 +11,13 @@ const port = process.env.HTTP_PORT;
 let app = express();
 let server = http.createServer(app);
 
-/*Create the websocket on the HTTP server*/
-let wss = new webSocket.Server({server});
-
 /*Create the Express app by adding to the already registered one.*/
 require("./ExpressApp.js")(app);
 
 /*Create the socket server*/
-require("./WebSocketServer.js")(wss);
+require("./WebSocketApp.js")({server});
+
+
 
 /*Start the HTTP Server*/
 server.listen(port, () => log.info(`App listening on port ${port}!`));

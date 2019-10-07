@@ -32,9 +32,12 @@ const logger = winston.createLogger({
 //This acts as a proxy to the actual logger, adding the module label to logs.
 module.exports = (label) => {
     return {
-        info: (message) => logger.info(`[${label}]: ${message}`),
+        error: (message) => logger.error(`[${label}]: ${message}`),
         warn: (message) => logger.warn(`[${label}]: ${message}`),
-        debug: (message) => logger.debug(`[${label}]: ${message}`)
+        info: (message) => logger.info(`[${label}]: ${message}`),
+        debug: (message) => logger.debug(`[${label}]: ${message}`),
+        verbose: (message) => logger.verbose(`[${label}]: ${message}`),
+        http: (message) => logger.http(`[${label}]: ${message}`)
     }
 };
 
