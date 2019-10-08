@@ -40,9 +40,11 @@ module.exports = (webSocketServer) => {
         setImmediate(() => {
             let coord1 = new TileUtil.Coord(data.long1, data.lat1);
             let coord2 = new TileUtil.Coord(data.long2, data.lat2);
-            TileUtil.getAreaTiles(coord1, coord2);
+            let tiles = TileUtil.getAreaTiles(coord1, coord2);
+            console.log(tiles);
+            tiles = TileUtil.filterExistingTiles(tiles, tileIndex);
+            console.log(tiles);
         });
-
     });
 };
 

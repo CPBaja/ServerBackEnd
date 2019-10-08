@@ -6,33 +6,39 @@ const providerApiKey = process.env.TILE_PROVIDER_API_KEY;
 
 const defaultTileSet = "mapbox.streets";
 
-const maxDomain = .015;
-const maxRange = .015;
+const maxDomain = .3;
+const maxRange = .3;
 
-const maxZoom = 7;
-const minZoom = 0;
+const zoomMax = 7;
+const zoomMin = 0;
 
-class Coord{
-    constructor(lon, lat){
+class Coord {
+    constructor(lon, lat) {
         this.lon = lon;
         this.lat = lat;
     }
 }
 
-class Tile{
-    constructor(tileSet, z, x, y){
+class Tile {
+    constructor(tileSet, z, x, y) {
         this.tileSet = tileSet;
         this.z = z;
         this.x = x;
         this.y = y;
     }
 
-    get tileId(){ //TODO: OPTIMIZE THESE FUNCTIONS - Cache results?
+    get tileId() { //TODO: OPTIMIZE THESE FUNCTIONS - Cache results?
         exportObject.getTileId(this.tileSet, this.z, this.x, this.y);
     }
 
-    get providerUrl(){
-        exportObject.template(providerUrlTemplate, {tileSet:this.tileSet, z:this.z, x:this.x, y:this.y, apiKey:providerApiKey});
+    get providerUrl() {
+        exportObject.template(providerUrlTemplate, {
+            tileSet: this.tileSet,
+            z: this.z,
+            x: this.x,
+            y: this.y,
+            apiKey: providerApiKey
+        });
     }
 }
 
@@ -44,9 +50,6 @@ const exportObject = {
         let lat1 = coord1.lat;
         let lon2 = coord2.lon;
         let lat2 = coord2.lat;
-
-        let zoomMax = 18;
-        let zoomMin = 0;
 
         let domain;
 
@@ -70,11 +73,11 @@ const exportObject = {
         let ctr = 0;
 
         for (let z = zoomMin; z <= zoomMax; z++) { //For each zoom level...
-            for (let x = 0; x <= this.range2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
-                let xi = this.long2tile(lon1, z); //Offset the current tile by our start tile
+            for (let x = 0; x <= exportObject.range2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
+                let xi = exportObject.long2tile(lon1, z); //Offset the current tile by our start tile
                 let xt = wrap(Math.pow(2, z), xi + x); //Wrap it to handle going across the seam
-                for (let y = 0; y <= this.range2tile(range, z); y++) { //Same for Y as X
-                    let yi = this.lat2tile(lat1, z);
+                for (let y = 0; y <= exportObject.range2tile(range, z); y++) { //Same for Y as X
+                    let yi = exportObject.lat2tile(lat1, z);
                     let yt = yi + y;
 
                     let newTile = new Tile(defaultTileSet, z, xt, yt);
@@ -86,12 +89,20 @@ const exportObject = {
         log.info(`Generated ${ctr} tiles in ${Date.now() - itime}`);
         return tiles;
     },
-    map: (num, in_min, in_max, out_min, out_max) => {
+
+    filterExistingTiles(tiles, existingTiles) { //Removes any tiles present in the existing ones.
+        const iLen = tiles.length;
+        let newArr = tiles.filter(tile => !existingTiles.indexOf(tile.tileId));
+        log.info(`Filtered ${iLen - newArr.length} tiles.`);
+        return newArr;
+    },
+
+    map: (num, in_min, in_max, out_min, out_max) => { //Maps the given function from the first range to the second
         return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     },
 
     range2tile: (r, zoom) => {
-        return Math.floor(this.map(r, 0, 360, 0, Math.pow(2, zoom)));
+        return Math.floor(exportObject.map(r, 0, 360, 0, Math.pow(2, zoom)));
     },
 
     getTileId: (tileSet, z, x, y) => {
@@ -101,24 +112,29 @@ const exportObject = {
             return undefined;
         }
     },
-    getTileUrl: (tileSet, z, x, y) => {
 
-    },
     long2tile: (lon, zoom) => {
         return (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
     },
+
     lat2tile: (lat, zoom) => {
         return (Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom)));
     },
+
     template: (template, variables) => {
         return template.replace(new RegExp("\{([^\{]+)\}", "g"), function (_unused, varName) {
             return variables[varName];
         });
     },
 
-    Coord: Coord,
-    Tile: Tile
+    downloadTile: (tile) => {
+        let url = tile.providerUrl;
 
+    },
+
+    Coord: Coord,
+
+    Tile: Tile
 };
 
 module.exports = exportObject;
