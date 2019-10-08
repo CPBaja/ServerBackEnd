@@ -1,25 +1,45 @@
 const wrap = require("wrap-around");
 const log = require(logger)("TileUtil");
 
+const providerUrlTemplate = process.env.TILE_PROVIDER_TEMPLATE;
+const providerApiKey = process.env.TILE_PROVIDER_API_KEY;
+
+const defaultTileSet = "mapbox.streets";
+
 const maxDomain = .015;
 const maxRange = .015;
 
-const maxZoom = 18;
+const maxZoom = 7;
 const minZoom = 0;
 
-class coord{
+class Coord{
     constructor(lon, lat){
         this.lon = lon;
         this.lat = lat;
     }
 }
 
-class tile{
+class Tile{
+    constructor(tileSet, z, x, y){
+        this.tileSet = tileSet;
+        this.z = z;
+        this.x = x;
+        this.y = y;
+    }
 
-};
+    get tileId(){ //TODO: OPTIMIZE THESE FUNCTIONS - Cache results?
+        exportObject.getTileId(this.tileSet, this.z, this.x, this.y);
+    }
 
-module.exports = {
-    getTileIdList: (coord1, coord2) => {
+    get providerUrl(){
+        exportObject.template(providerUrlTemplate, {tileSet:this.tileSet, z:this.z, x:this.x, y:this.y, apiKey:providerApiKey});
+    }
+}
+
+const exportObject = {
+    getAreaTiles: (coord1, coord2) => { //Takes 2 lon/lat coords and generates an array of tile objects
+        let itime = Date.now();
+
         let lon1 = coord1.lon;
         let lat1 = coord1.lat;
         let lon2 = coord2.lon;
@@ -42,25 +62,29 @@ module.exports = {
 
         //Check to make sure the requested area is reasonable
         if (range > maxRange || domain > maxDomain) {
-            log.warn("Requested area too thicc!");
+            log.error("Requested area too thicc!");
             return;
         }
 
+        let tiles = [];
+        let ctr = 0;
+
         for (let z = zoomMin; z <= zoomMax; z++) { //For each zoom level...
-            for (let x = 0; x <= range2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
-                let xi = long2tile(lon1, z); //Offset the current tile by our start tile
+            for (let x = 0; x <= this.range2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
+                let xi = this.long2tile(lon1, z); //Offset the current tile by our start tile
                 let xt = wrap(Math.pow(2, z), xi + x); //Wrap it to handle going across the seam
-                for (let y = 0; y <= range2tile(range, z); y++) { //Same for Y as X
-                    let yi = lat2tile(lat1, z);
+                for (let y = 0; y <= this.range2tile(range, z); y++) { //Same for Y as X
+                    let yi = this.lat2tile(lat1, z);
                     let yt = yi + y;
 
-                    /* We have the add*/
-                    let tileId = getTileId("mapbox.streets", z, xt, yt);
-                    fs.createReadStream(arp + "/resources/TestTile.png").pipe(fs.createWriteStream(arp + `/tiles/${tileId}.png`));
-                    console.log(tileId);
+                    let newTile = new Tile(defaultTileSet, z, xt, yt);
+                    tiles.push(newTile);
+                    ctr++;
                 }
             }
         }
+        log.info(`Generated ${ctr} tiles in ${Date.now() - itime}`);
+        return tiles;
     },
     map: (num, in_min, in_max, out_min, out_max) => {
         return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -77,6 +101,9 @@ module.exports = {
             return undefined;
         }
     },
+    getTileUrl: (tileSet, z, x, y) => {
+
+    },
     long2tile: (lon, zoom) => {
         return (Math.floor((lon + 180) / 360 * Math.pow(2, zoom)));
     },
@@ -89,7 +116,9 @@ module.exports = {
         });
     },
 
-    coord: coord
+    Coord: Coord,
+    Tile: Tile
 
 };
 
+module.exports = exportObject;

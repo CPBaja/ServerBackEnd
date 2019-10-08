@@ -1,9 +1,12 @@
-2019-10-07T20:59:14.601Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-07T20:59:14.602Z | [Express]: Registering ServerEvents.js
-2019-10-07T20:59:14.604Z | [Express]: Registering Statics.js
-2019-10-07T20:59:14.605Z | [Express]: Registering TileServer.js
-2019-10-07T20:59:14.802Z | [WSS]: Starting WSS
-2019-10-07T20:59:14.803Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-10-07T20:59:14.803Z | [WebSocketApp]: Registering TileServerWS.js
-2019-10-07T20:59:14.805Z | [WebSocketApp]: Registering TopKek.js
-2019-10-07T20:59:16.194Z | [Server]: App listening on port 80!
+2019-10-08T02:50:27.946Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-08T02:50:27.947Z | [Express]: Registering ServerEvents.js
+2019-10-08T02:50:27.949Z | [Express]: Registering Statics.js
+2019-10-08T02:50:27.951Z | [Express]: Registering TileServer.js
+2019-10-08T02:50:28.135Z | [WSS]: Starting WSS
+2019-10-08T02:50:28.135Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-08T02:50:28.136Z | [WebSocketApp]: Registering TileServerWS.js
+2019-10-08T02:50:28.138Z | [WebSocketApp]: Registering TopKek.js
+2019-10-08T02:50:28.145Z | [Server]: App listening on port 80!
+2019-10-08T02:50:45.102Z | [WSS]: Accepted connection from ::1
+2019-10-08T02:50:49.088Z | [WSS]: Received message from ::1: "{"channel":"downloadMapArea","long1":-120.6828,"lat1":35.3246,"long2":-120.6481,"lat2":35.2966}"
+2019-10-08T03:02:00.276Z | [Tile Server]: Proxied tile request for mapbox.streets/0/0/0

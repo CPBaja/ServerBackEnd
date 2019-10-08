@@ -13,6 +13,7 @@ const errorTilePath = path.join(arp+"", process.env.ERROR_TILE_PATH);
 const log = require(logger)("Tile Server");
 
 let tileIndex; //A cached list of stored tiles
+global["tileIndex"] = tileIndex;
 buildTileIndex();
 
 imc.on("buildTileIndex", () => setImmediate(buildTileIndex));

@@ -1,8 +1,7 @@
 const log = require(logger)("TileServerWS");
 const arp = require("app-root-path");
 const tileDir = arp + process.env.TILE_DIR;
-const wrap = require("wrap-around");
-const fs = require("graceful-fs");
+const TileUtil = require(arp + "/server/Util/TileUtil.js");
 
 /*Download Params*/
 const maxRange = .015;
@@ -24,7 +23,7 @@ const successReply = {
     type: "success",
     heading: "Map Download",
     message: "Download successfully started."
-}
+};
 
 //===> ERROR REPLY FORMAT:
 const errorReply = {
@@ -36,9 +35,24 @@ const errorReply = {
 
 module.exports = (webSocketServer) => {
     webSocketServer.on("downloadMapArea", (wss, ws, data) => {
+        //console.log(data);
+        //Begin downloading tiles using tileUtil
+        setImmediate(() => {
+            let coord1 = new TileUtil.Coord(data.long1, data.lat1);
+            let coord2 = new TileUtil.Coord(data.long2, data.lat2);
+            TileUtil.getAreaTiles(coord1, coord2);
+        });
+
     });
 };
 
+console.log(JSON.stringify({
+    channel:"downloadMapArea",
+    long1: -120.6828,
+    lat1: 35.3246,
+    long2: -120.6481,
+    lat2: 35.2966
+}));
 
 
 
