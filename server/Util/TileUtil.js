@@ -1,7 +1,5 @@
 const wrap = require("wrap-around");
-const path = require("path");
 const log = require(logger)("TileUtil");
-const arp = require("app-root-path");
 
 
 const providerUrlTemplate = process.env.TILE_PROVIDER_TEMPLATE;
@@ -12,7 +10,7 @@ const defaultTileSet = "mapbox.streets";
 const maxDomain = .3;
 const maxRange = .3;
 
-const zoomMax = 7;
+const zoomMax = 18;
 const zoomMin = 0;
 
 class Coord {
@@ -31,7 +29,7 @@ class Tile {
     }
 
     get tileId() { //TODO: OPTIMIZE THESE FUNCTIONS - Cache results?
-        exportObject.getTileId(this.tileSet, this.z, this.x, this.y);
+        return exportObject.getTileId(this.tileSet, this.z, this.x, this.y);
     }
 
     get providerUrl() {
@@ -46,7 +44,7 @@ class Tile {
 }
 
 const exportObject = {
-    getAreaTiles: (coord1, coord2) => { //Takes 2 lon/lat coords and generates an array of tile objects
+    getAreaTiles: (coord1, coord2) => { //Takes 2 lon/lat coords and generates an array of tile objects in the given 3d area
         let itime = Date.now();
 
         let lon1 = coord1.lon;
@@ -69,33 +67,35 @@ const exportObject = {
         //Check to make sure the requested area is reasonable
         if (range > maxRange || domain > maxDomain) {
             log.error("Requested area too thicc!");
-            return;
+            return []; //Return a blank array to not propagate the err
         }
 
         let tiles = [];
         let ctr = 0;
 
         for (let z = zoomMin; z <= zoomMax; z++) { //For each zoom level...
-            for (let x = 0; x <= exportObject.range2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
+            for (let x = 0; x <= exportObject.domain2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
                 let xi = exportObject.long2tile(lon1, z); //Offset the current tile by our start tile
                 let xt = wrap(Math.pow(2, z), xi + x); //Wrap it to handle going across the seam
-                for (let y = 0; y <= exportObject.range2tile(range, z); y++) { //Same for Y as X
-                    let yi = exportObject.lat2tile(lat1, z);
-                    let yt = yi + y;
 
-                    let newTile = new Tile(defaultTileSet, z, xt, yt);
+                //Y is easier because we don't have a seam to deal with. Just go from coord1 to coord2
+                for (let y = exportObject.lat2tile(lat1, z); y <= exportObject.lat2tile(lat2, z); y++) {
+                    //Create a new tile object for each coord in the 3d area and push it to the array (And add to a ctr)
+                    let newTile = new Tile(defaultTileSet, z, xt, y);
                     tiles.push(newTile);
                     ctr++;
                 }
             }
         }
         log.info(`Generated ${ctr} tiles in ${Date.now() - itime}ms`);
-        return tiles;
+        return tiles; //Return the arr of tiles.
     },
 
-    filterExistingTiles(tiles, existingTiles) { //Removes any tiles present in the existing ones.
+    filterExistingTiles(tiles, existingTiles) { //Removes any tiles present in the already indexed/downloaded ones.
         const iLen = tiles.length;
-        let newArr = tiles.filter(tile => existingTiles.indexOf(tile.tileId) < 0); //If not present, allow it through
+
+        //If NOT present in indexed files, allow it through
+        let newArr = tiles.filter(tile => existingTiles.indexOf(`${tile.tileId}.png`) < 0);
         log.info(`Filtered ${iLen - newArr.length} tiles.`);
         return newArr;
     },
@@ -104,8 +104,9 @@ const exportObject = {
         return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     },
 
-    range2tile: (r, zoom) => {
-        return Math.floor(exportObject.map(r, 0, 360, 0, Math.pow(2, zoom)));
+    domain2tile: (l, zoom) => {
+        //return Math.floor(exportObject.map(r, 0, 360, 0, Math.pow(2, zoom)));
+        return (Math.floor((l) / 360 * Math.pow(2, zoom)));
     },
 
     getTileId: (tileSet, z, x, y) => {
@@ -128,19 +129,6 @@ const exportObject = {
         return template.replace(new RegExp("\{([^\{]+)\}", "g"), function (_unused, varName) {
             return variables[varName];
         });
-    },
-
-    downloadTiles: (tiles, dir) => {
-        //console.log(tile.providerUrl);
-        let downloader = new Downloader();
-        tiles.forEach((tile) => {
-            let filePath = path.join(arp+"", dir, `${tile.tileId}.png`);
-            console.log(path);
-            let dl = downloader.download(tile.providerUrl, filePath);
-            dl.start();
-        });
-
-
     },
 
     Coord: Coord,

@@ -2,6 +2,8 @@
   <dictionary name="Dominic">
     <words>
       <w>coord</w>
+      <w>itime</w>
+      <w>mapbox</w>
     </words>
   </dictionary>
 </component>

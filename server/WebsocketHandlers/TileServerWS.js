@@ -1,11 +1,17 @@
 const log = require(logger)("TileServerWS");
 const arp = require("app-root-path");
+const path = require("path");
+const fs = require("graceful-fs");
 const tileDir = arp + process.env.TILE_DIR;
 const TileUtil = require(arp + "/server/Util/TileUtil.js");
+const async = require("async");
+const request = require("request");
+
 
 /*Download Params*/
 const maxRange = .015;
 const maxDomain = .015;
+const concurrentDownloads = 5;
 
 /*===> REQUEST FORMAT:
 {
@@ -35,19 +41,28 @@ const errorReply = {
 
 module.exports = (webSocketServer) => {
     webSocketServer.on("downloadMapArea", (wss, ws, data) => {
-        //console.log(data);
-        //Begin downloading tiles using tileUtil
-        setImmediate(() => { //Set it to be async
+        //Set this function to be async to not hang the server.
+        setImmediate(() => {
+            let dlCtr = 0;
+            let timeStarted = Date.now();
+            /*First, pull coords from the sent data*/ //TODO: CHECK VALIDITY OF RECEIVED DATA!!!
             let coord1 = new TileUtil.Coord(data.long1, data.lat1);
             let coord2 = new TileUtil.Coord(data.long2, data.lat2);
-            let tiles = TileUtil.getAreaTiles(coord1, coord2);
-            //console.log(tiles);
-            tiles = TileUtil.filterExistingTiles(tiles, tileIndex);
-            //console.log(tileIndex);
-            //console.log(tiles);
-            TileUtil.downloadTiles(tiles, "tiles");
 
-            imc.emit("buildTileIndex");
+            /*Get an array of needed tiles to download and filter ones already in our tile dir.*/
+            let tiles = TileUtil.getAreaTiles(coord1, coord2);
+            tiles = TileUtil.filterExistingTiles(tiles, tileIndex);
+
+            /*Finally, batch download the images <concurrentDownloads> at a time*/
+            async.eachOfLimit(tiles, concurrentDownloads, (tile, key, ecb) => {
+                let tilePath = path.join(tileDir, `${tile.tileId}.png`); //Create the path of the new file...
+                request(tile.providerUrl) //Request the tile...
+                    .pipe(fs.createWriteStream(tilePath)) //Pipe it to the local path+file
+                    .on("finish", () => {log.debug(`Downloaded ${tile.tileId}.`); dlCtr++; ecb(null);}); //When finished, allow the queue to continue.
+            }, () => {
+                log.info(`Downloaded ${dlCtr} in ${(Date.now() - timeStarted)/1000} seconds.`);
+                imc.emit("buildTileIndex"); //After all files are downloaded, log it and rebuild the tile index for posterity.
+            });
         });
     });
 };
