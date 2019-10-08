@@ -12,8 +12,6 @@ const tileDir = "tiles";
 const errorTilePath = path.join(arp+"", process.env.ERROR_TILE_PATH);
 const log = require(logger)("Tile Server");
 
-let tileIndex; //A cached list of stored tiles
-global["tileIndex"] = tileIndex;
 buildTileIndex();
 
 imc.on("buildTileIndex", () => setImmediate(buildTileIndex));
@@ -37,7 +35,7 @@ module.exports = (app) => {
         /*First try to serve it from the local cache*/
         let tileFile = `${tileId}.png`;
 
-        if(tileIndex.includes(tileFile)){ //If we have the tile locally, just serve it.
+        if(global["tileIndex"].includes(tileFile)){ //If we have the tile locally, just serve it.
             res.sendFile(path.join(arp+"", tileDir, tileFile));
             log.debug(`Tile request for ${tileSet}/${z}/${x}/${y} served locally`);
             return;
@@ -58,11 +56,11 @@ module.exports = (app) => {
 
 //Setup a watch on the directory to keep our cache/index updated with changes to the tile directory.
 let dirWatch = new DirWatch(tileDir);
-dirWatch.on("added", (file) => tileIndex.push(file));
-dirWatch.on("removed", (file) => tileIndex.splice(tileIndex.indexOf(file), 1));
+dirWatch.on("added", (file) => global["tileIndex"].push(file));
+dirWatch.on("removed", (file) => global["tileIndex"].splice(global["tileIndex"].indexOf(file), 1));
 
 function buildTileIndex(){
-    tileIndex = fs.readdirSync(tileDir);
+    global["tileIndex"] = fs.readdirSync(tileDir);
 }
 
 function getTileId(tileSet, z, x, y){

@@ -1,12 +1,11 @@
-2019-10-08T03:58:02.729Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-08T03:58:02.731Z | [Express]: Registering ServerEvents.js
-2019-10-08T03:58:02.733Z | [Express]: Registering Statics.js
-2019-10-08T03:58:02.735Z | [Express]: Registering TileServer.js
-2019-10-08T03:58:02.941Z | [WSS]: Starting WSS
-2019-10-08T03:58:02.941Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-10-08T03:58:02.942Z | [WebSocketApp]: Registering TileServerWS.js
-2019-10-08T03:58:02.945Z | [WebSocketApp]: Registering TopKek.js
-2019-10-08T03:58:02.952Z | [Server]: App listening on port 80!
-2019-10-08T03:58:04.933Z | [WSS]: Accepted connection from ::1
-2019-10-08T03:58:09.528Z | [WSS]: Received message from ::1: "{"channel":"downloadMapArea","long1":-120.6828,"lat1":35.3246,"long2":-120.6481,"lat2":35.2966}"
-2019-10-08T03:58:09.529Z | [TileUtil]: Generated 8 tiles in 1
+2019-10-08T06:07:16.244Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-08T06:07:16.245Z | [Express]: Registering ServerEvents.js
+2019-10-08T06:07:16.248Z | [Express]: Registering Statics.js
+2019-10-08T06:07:16.250Z | [Express]: Registering TileServer.js
+2019-10-08T06:07:16.481Z | [WSS]: Starting WSS
+2019-10-08T06:07:16.481Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-08T06:07:16.482Z | [WebSocketApp]: Registering TileServerWS.js
+2019-10-08T06:07:16.569Z | [WebSocketApp]: Registering TopKek.js
+2019-10-08T06:07:16.578Z | [Server]: App listening on port 80!
+2019-10-08T06:07:17.487Z | [WSS]: Accepted connection from ::1
+2019-10-08T06:07:18.411Z | [WSS]: Received message from ::1: "{"channel":"downloadMapArea","long1":-120.6828,"lat1":35.3246,"long2":-120.6481,"lat2":35.2966}"

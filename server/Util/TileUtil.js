@@ -1,5 +1,8 @@
 const wrap = require("wrap-around");
+const path = require("path");
 const log = require(logger)("TileUtil");
+const arp = require("app-root-path");
+
 
 const providerUrlTemplate = process.env.TILE_PROVIDER_TEMPLATE;
 const providerApiKey = process.env.TILE_PROVIDER_API_KEY;
@@ -32,7 +35,7 @@ class Tile {
     }
 
     get providerUrl() {
-        exportObject.template(providerUrlTemplate, {
+        return exportObject.template(providerUrlTemplate, {
             tileSet: this.tileSet,
             z: this.z,
             x: this.x,
@@ -86,13 +89,13 @@ const exportObject = {
                 }
             }
         }
-        log.info(`Generated ${ctr} tiles in ${Date.now() - itime}`);
+        log.info(`Generated ${ctr} tiles in ${Date.now() - itime}ms`);
         return tiles;
     },
 
     filterExistingTiles(tiles, existingTiles) { //Removes any tiles present in the existing ones.
         const iLen = tiles.length;
-        let newArr = tiles.filter(tile => !existingTiles.indexOf(tile.tileId));
+        let newArr = tiles.filter(tile => existingTiles.indexOf(tile.tileId) < 0); //If not present, allow it through
         log.info(`Filtered ${iLen - newArr.length} tiles.`);
         return newArr;
     },
@@ -127,8 +130,16 @@ const exportObject = {
         });
     },
 
-    downloadTile: (tile) => {
-        let url = tile.providerUrl;
+    downloadTiles: (tiles, dir) => {
+        //console.log(tile.providerUrl);
+        let downloader = new Downloader();
+        tiles.forEach((tile) => {
+            let filePath = path.join(arp+"", dir, `${tile.tileId}.png`);
+            console.log(path);
+            let dl = downloader.download(tile.providerUrl, filePath);
+            dl.start();
+        });
+
 
     },
 

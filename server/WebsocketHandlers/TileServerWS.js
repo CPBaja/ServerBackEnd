@@ -37,13 +37,17 @@ module.exports = (webSocketServer) => {
     webSocketServer.on("downloadMapArea", (wss, ws, data) => {
         //console.log(data);
         //Begin downloading tiles using tileUtil
-        setImmediate(() => {
+        setImmediate(() => { //Set it to be async
             let coord1 = new TileUtil.Coord(data.long1, data.lat1);
             let coord2 = new TileUtil.Coord(data.long2, data.lat2);
             let tiles = TileUtil.getAreaTiles(coord1, coord2);
-            console.log(tiles);
+            //console.log(tiles);
             tiles = TileUtil.filterExistingTiles(tiles, tileIndex);
-            console.log(tiles);
+            //console.log(tileIndex);
+            //console.log(tiles);
+            TileUtil.downloadTiles(tiles, "tiles");
+
+            imc.emit("buildTileIndex");
         });
     });
 };
