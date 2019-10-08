@@ -18,6 +18,18 @@ class WebSocketServer extends EventEmitter{
 
     connection(wss, ws){
         log.http(`Accepted connection from ${ws._socket.remoteAddress}`);
+        /*Add our custom crap to the socket*/
+        ws["sendNotification"] = function(type, header, message){
+          this.send(JSON.stringify({
+              channel: "notification",
+              type: type, //Error, success, normal...
+              header: header,
+              message: message
+          }));
+        };
+
+
+
         this.emit("connection", wss, ws);
         ws.on("message", (data) => this.message(wss, ws, data));
         ws.on("error", (data) => this.error(wss, ws, data));

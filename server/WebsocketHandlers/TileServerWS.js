@@ -53,6 +53,14 @@ module.exports = (webSocketServer) => {
             let tiles = TileUtil.getAreaTiles(coord1, coord2);
             tiles = TileUtil.filterExistingTiles(tiles, tileIndex);
 
+            //Notify the client their download is starting.
+            ws.send(JSON.stringify({
+                channel: "mapDownloadProgress",
+                stage: "started",
+                progress: 0
+            }));
+
+            //TODO: INVESTIGATE TILE DOWNLOAD CONCURRENCY: WHAT HAPPENS IF 2 REQUEST AT SAME TIME??
             /*Finally, batch download the images <concurrentDownloads> at a time*/
             async.eachOfLimit(tiles, concurrentDownloads, (tile, key, ecb) => {
                 let tilePath = path.join(tileDir, `${tile.tileId}.png`); //Create the path of the new file...
@@ -71,6 +79,13 @@ module.exports = (webSocketServer) => {
                     .pipe(stream) //Pipe it to the local path+file
                     .on("finish", () => {
                         if (!errored) {
+                            tileIndex.push(`${tile.tileId}.png`); //Push it to the index.
+
+                            if(false){
+                                ws.send()// TODO: SEND PROGRESS UPDATES
+                            }
+
+
                             log.debug(`Downloaded ${tile.tileId}.`);
                             dlCtr++;
                             ecb(null);
@@ -80,10 +95,10 @@ module.exports = (webSocketServer) => {
 
             }, (err) => {
                 if(err instanceof Error){
-                    log.error("Double plus ungood error occurred when downloading files.")
+                    log.error("Double plus ungood error occurred when downloading files.");
+                    ws.sendNotification("error", "Map Download", "Error downloading map.");
                 } else {
                     log.info(`Downloaded ${dlCtr} in ${(Date.now() - timeStarted)/1000} seconds.`);
-                    imc.emit("buildTileIndex"); //After all files are downloaded, log it and rebuild the tile index for posterity.
                 }
 
             });
