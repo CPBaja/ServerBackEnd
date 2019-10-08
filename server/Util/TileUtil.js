@@ -44,7 +44,11 @@ class Tile {
 }
 
 const exportObject = {
-    getAreaTiles: (coord1, coord2) => { //Takes 2 lon/lat coords and generates an array of tile objects in the given 3d area
+    //Takes 2 lon/lat coords and generates an array of tile objects in the given 3d area
+    //Coords in the middle of the pacific ocean over that DAMN seam not supported!
+    //TODO: if the team REALLLLLLLLLLLYYYYYYYY needs to download tiles over the FUCKING PACIFIC I can do some shit.
+    //TODO: Add error handling to this clusterfuck.
+    getAreaTiles: (coord1, coord2) => {
         let itime = Date.now();
 
         let lon1 = coord1.lon;
@@ -52,16 +56,12 @@ const exportObject = {
         let lon2 = coord2.lon;
         let lat2 = coord2.lat;
 
-        let domain;
+        if (lon1 >= lon2) { //There's a gosh darn seam. Fail it bc tbh I can't be bothered.
+            log.error("FUCKING SEAMS ARARARHWGRVHRAGBEIJHB");
+            return;
+        }
 
-        if (lon1 <= lon2) {
-            domain = lon2 - lon1
-        } //We are not dealing with the seam, domain is simple
-        else {
-            domain = lon2 - (lon1 - 360)
-        } //We are traveling across the seam, subtract 360 from the west boundary to allow domain calculation
-
-        domain = Math.abs(domain); //The domain (long) of the region in degrees [0-360]
+        let domain = Math.abs(lon2 - lon1); //The domain (long) of the region in degrees [0-360]
         let range = Math.abs(lat2 - lat1); //The range (lat) of the region in degrees [0-360]
 
         //Check to make sure the requested area is reasonable
@@ -74,14 +74,11 @@ const exportObject = {
         let ctr = 0;
 
         for (let z = zoomMin; z <= zoomMax; z++) { //For each zoom level...
-            for (let x = 0; x <= exportObject.domain2tile(domain, z); x++) { //For each tile at zoom level Z in our domain
-                let xi = exportObject.long2tile(lon1, z); //Offset the current tile by our start tile
-                let xt = wrap(Math.pow(2, z), xi + x); //Wrap it to handle going across the seam
-
-                //Y is easier because we don't have a seam to deal with. Just go from coord1 to coord2
+            for (let x = exportObject.long2tile(lon1, z); x <= exportObject.long2tile(lon2, z); x++) { //For each tile at zoom level Z in our domain
                 for (let y = exportObject.lat2tile(lat1, z); y <= exportObject.lat2tile(lat2, z); y++) {
+
                     //Create a new tile object for each coord in the 3d area and push it to the array (And add to a ctr)
-                    let newTile = new Tile(defaultTileSet, z, xt, y);
+                    let newTile = new Tile(defaultTileSet, z, x, y);
                     tiles.push(newTile);
                     ctr++;
                 }

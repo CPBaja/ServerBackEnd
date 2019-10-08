@@ -56,12 +56,36 @@ module.exports = (webSocketServer) => {
             /*Finally, batch download the images <concurrentDownloads> at a time*/
             async.eachOfLimit(tiles, concurrentDownloads, (tile, key, ecb) => {
                 let tilePath = path.join(tileDir, `${tile.tileId}.png`); //Create the path of the new file...
-                request(tile.providerUrl) //Request the tile...
-                    .pipe(fs.createWriteStream(tilePath)) //Pipe it to the local path+file
-                    .on("finish", () => {log.debug(`Downloaded ${tile.tileId}.`); dlCtr++; ecb(null);}); //When finished, allow the queue to continue.
-            }, () => {
-                log.info(`Downloaded ${dlCtr} in ${(Date.now() - timeStarted)/1000} seconds.`);
-                imc.emit("buildTileIndex"); //After all files are downloaded, log it and rebuild the tile index for posterity.
+                let stream = fs.createWriteStream(tilePath);
+                let errored;
+                //Request the tile...
+                request(tile.providerUrl)
+                    .on("error", function(){
+                        this.abort();
+                        stream.end();
+                        fs.unlinkSync(tilePath);
+                        errored = true;
+                        //log.error(`Error downloading from ${tile.providerUrl}`);
+                        ecb(new Error());
+                    })
+                    .pipe(stream) //Pipe it to the local path+file
+                    .on("finish", () => {
+                        if (!errored) {
+                            log.debug(`Downloaded ${tile.tileId}.`);
+                            dlCtr++;
+                            ecb(null);
+                        }
+
+                    }); //When finished, allow the queue to continue.
+
+            }, (err) => {
+                if(err instanceof Error){
+                    log.error("Double plus ungood error occurred when downloading files.")
+                } else {
+                    log.info(`Downloaded ${dlCtr} in ${(Date.now() - timeStarted)/1000} seconds.`);
+                    imc.emit("buildTileIndex"); //After all files are downloaded, log it and rebuild the tile index for posterity.
+                }
+
             });
         });
     });
