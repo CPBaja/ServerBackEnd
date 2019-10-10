@@ -1,14 +1,15 @@
-2019-10-08T17:49:48.808Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-08T17:49:48.809Z | [Express]: Registering ServerEvents.js
-2019-10-08T17:49:48.813Z | [Express]: Registering Statics.js
-2019-10-08T17:49:48.815Z | [Express]: Registering TileServer.js
-2019-10-08T17:49:49.016Z | [WSS]: Starting WSS
-2019-10-08T17:49:49.016Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-10-08T17:49:49.016Z | [WebSocketApp]: Registering TileServerWS.js
-2019-10-08T17:49:49.026Z | [WebSocketApp]: Registering TopKek.js
-2019-10-08T17:49:49.035Z | [Server]: App listening on port 80!
-2019-10-08T17:49:50.335Z | [WSS]: Accepted connection from ::1
-2019-10-08T17:49:51.341Z | [WSS]: Received message from ::1: "{"channel":"downloadMapArea","long1":-120.6828,"lat1":35.3246,"long2":-120.6481,"lat2":35.2966}"
-2019-10-08T17:49:51.343Z | [TileUtil]: Generated 967 tiles in 1ms
-2019-10-08T17:49:51.355Z | [TileUtil]: Filtered 961 tiles.
-2019-10-08T17:49:51.465Z | [TileServerWS]: Double plus ungood error occurred when downloading files.
+2019-10-10T15:25:08.964Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-10T15:25:08.965Z | [Express]: Registering ServerEvents.js
+2019-10-10T15:25:08.967Z | [Express]: Registering Statics.js
+2019-10-10T15:25:08.969Z | [Express]: Registering TileServer.js
+2019-10-10T15:25:09.204Z | [WSS]: Starting WSS
+2019-10-10T15:25:09.205Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-10T15:25:09.206Z | [WebSocketApp]: Registering RunWS.js
+2019-10-10T15:25:09.207Z | [WebSocketApp]: Registering TileServerWS.js
+2019-10-10T15:25:09.216Z | [WebSocketApp]: Registering TopKek.js
+2019-10-10T15:25:09.223Z | [Server]: App listening on port 80!
+2019-10-10T15:25:37.579Z | [WSS]: Accepted connection from ::1
+2019-10-10T15:26:24.024Z | [WSS]: Received message from ::1: "{"channel":"availableRunRequest"}"
+2019-10-10T15:26:34.520Z | [WSS]: Received message from ::1: "{"channel":"availableRunRequest"}"
+2019-10-10T15:26:36.046Z | [WSS]: Received message from ::1: "{"channel":"availableRunRequest"}"
+2019-10-10T15:26:36.680Z | [WSS]: Received message from ::1: "{"channel":"availableRunRequest"}"

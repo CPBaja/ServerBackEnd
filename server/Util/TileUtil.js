@@ -48,7 +48,7 @@ const exportObject = {
     //Coords in the middle of the pacific ocean over that DAMN seam not supported!
     //TODO: if the team REALLLLLLLLLLLYYYYYYYY needs to download tiles over the FUCKING PACIFIC I can do some shit.
     //TODO: Add error handling to this clusterfuck.
-    getAreaTiles: (coord1, coord2) => {
+    getAreaTiles: (coord1, coord2, tileSet) => {
         let itime = Date.now();
 
         let lon1 = coord1.lon;
@@ -78,7 +78,7 @@ const exportObject = {
                 for (let y = exportObject.lat2tile(lat1, z); y <= exportObject.lat2tile(lat2, z); y++) {
 
                     //Create a new tile object for each coord in the 3d area and push it to the array (And add to a ctr)
-                    let newTile = new Tile(defaultTileSet, z, x, y);
+                    let newTile = new Tile(tileSet, z, x, y);
                     tiles.push(newTile);
                     ctr++;
                 }
