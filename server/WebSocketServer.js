@@ -28,6 +28,11 @@ class WebSocketServer extends EventEmitter{
           }));
         };
 
+        ws["sendObject"] = function (channel, object) {
+          object.channel = channel; //Set the channel on the object
+          this.send(JSON.stringify(object));
+        };
+
 
 
         this.emit("connection", wss, ws);

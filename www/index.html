@@ -11,11 +11,13 @@
 <div id="mapid" style="height: 500px"></div>
 
 <script>
-    var mymap = L.map('mapid').setView([35.2824, -120.6638], 0);
+    var mymap = L.map('mapid', {
+        maxZoom: 19
+    }).setView([35.2824, -120.6638], 0);
     L.tileLayer('/t/{id}/{z}/{x}/{y}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
-        id: 'mapbox.streets',
+        id: 'mapbox.satellite',
         accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
 

@@ -11,7 +11,6 @@ const log = require(logger)("Tile Server");
 buildTileIndex();
 
 imc.on("buildTileIndex", () => setImmediate(buildTileIndex));
-
 module.exports = (app) => {
     app.get("/t/:tileSet/:z/:x/:y", (req, res) =>
     {
