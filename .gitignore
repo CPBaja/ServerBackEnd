@@ -2,3 +2,5 @@
 /node_modules/
 tiles/*
 !tiles/.gitkeep
+ingest/*
+!ingest/.gitkeep
