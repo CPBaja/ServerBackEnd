@@ -2,25 +2,28 @@ const stream = require("stream");
 const fs = require("graceful-fs");
 const arp = require("app-root-path");
 const path = require("path");
-const readline = require("readline");
-const lineTransform = require("./Pipes/LineTransform");
+const LineParser = require("./Pipes/LineParser.js");
+const SecondParser = require("./Pipes/SecondParser.js");
+const SensorParser = require("./Pipes/SensorParser.js");
+const ConsoleWriter = require("./Pipes/ConsoleWriter.js");
+const testStream = require("./Pipes/TestGenerator");
 
-class ConsoleWriter extends stream.Writable{
-    constructor(options) {
-        super(options);
-    }
 
-    _write(chunk, encoding, next){
-        //console.log(chunk);
 
-        setTimeout(() => {
-            console.log(chunk.toString());
-            console.log("----------------------------");
-            next();
-        }, 1);
 
-    }
+let lineParser = new LineParser();
+let secondParser = new SecondParser();
+let sensorParser = new SensorParser();
+let consoleWriter = new ConsoleWriter();
 
-}
+testStream.pipe(consoleWriter);
+
+/*
+fs.createReadStream('ingest/2.txt')
+    .pipe(lineParser)
+    .pipe(sensorParser)
+    //.pipe(new ConsoleWriter());
+    .pipe(secondParser);
 
 //setTimeout(() => {}, 30000);
+*/

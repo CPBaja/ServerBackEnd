@@ -5,7 +5,7 @@
 
 const stream = require("stream");
 
-class LineTransform extends stream.Transform {
+class LineParser extends stream.Transform {
     constructor(options){
         super(options);
     }
@@ -20,4 +20,4 @@ class LineTransform extends stream.Transform {
     }
 }
 
-module.exports = LineTransform;
+module.exports = LineParser;
