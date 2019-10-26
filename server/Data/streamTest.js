@@ -6,7 +6,7 @@ const LineParser = require("./Pipes/LineParser.js");
 const SecondParser = require("./Pipes/SecondParser.js");
 const SensorParser = require("./Pipes/SensorParser.js");
 const ConsoleWriter = require("./Pipes/ConsoleWriter.js");
-const testStream = require("./Pipes/TestGenerator");
+//const testStream = require("./Pipes/TestGenerator");
 
 
 
@@ -16,7 +16,7 @@ let secondParser = new SecondParser();
 let sensorParser = new SensorParser();
 let consoleWriter = new ConsoleWriter();
 
-testStream.pipe(consoleWriter);
+//testStream.pipe(consoleWriter);
 
 /*
 fs.createReadStream('ingest/2.txt')
