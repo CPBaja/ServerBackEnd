@@ -5,6 +5,7 @@ const SecondParser = require("./Pipes/SecondParser.js");
 const SensorParser = require("./Pipes/SensorParser.js");
 const ConsoleWriter = require("./Pipes/ConsoleWriter.js");
 const BlockParser = require("./Pipes/BlockParser.js");
+const CSVWriter = require("./Pipes/CSVWriter.js");
 
 
 
@@ -13,11 +14,12 @@ let secondParser = new SecondParser();
 let sensorParser = new SensorParser();
 let consoleWriter = new ConsoleWriter();
 let blockParser = new BlockParser();
+let csvWriter = new CSVWriter();
 //testStream.pipe(consoleWriter);
 
+let out = fs.createWriteStream("csvOut.csv");
 
-fs.createReadStream('ingest/F0.BIN')
-    .pipe(blockParser);
+fs.createReadStream('ingest/F0.BIN').pipe(blockParser).pipe(csvWriter).pipe(out);
 
 //setTimeout(() => {}, 30000);
 
