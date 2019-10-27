@@ -1,3 +1,4 @@
+/*
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
@@ -20,5 +21,5 @@ db.set('user.name', 'typicode')
 // Increment count
 db.update('count', n => n + 1)
     .write()
-
+*/
 require("./Data/streamTest");

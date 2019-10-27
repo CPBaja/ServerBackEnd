@@ -1,10 +1,10 @@
-2019-10-25T22:04:33.510Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-25T22:04:33.511Z | [Express]: Registering ServerEvents.js
-2019-10-25T22:04:33.513Z | [Express]: Registering Statics.js
-2019-10-25T22:04:33.514Z | [Express]: Registering TileServer.js
-2019-10-25T22:04:33.703Z | [WSS]: Starting WSS
-2019-10-25T22:04:33.704Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-10-25T22:04:33.704Z | [WebSocketApp]: Registering RunWS.js
-2019-10-25T22:04:33.705Z | [WebSocketApp]: Registering TileServerWS.js
-2019-10-25T22:04:33.714Z | [WebSocketApp]: Registering TopKek.js
-2019-10-25T22:04:33.720Z | [Server]: App listening on port 80!
+2019-10-27T02:38:27.875Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-27T02:38:27.877Z | [Express]: Registering ServerEvents.js
+2019-10-27T02:38:27.880Z | [Express]: Registering Statics.js
+2019-10-27T02:38:27.882Z | [Express]: Registering TileServer.js
+2019-10-27T02:38:28.089Z | [WSS]: Starting WSS
+2019-10-27T02:38:28.090Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-27T02:38:28.091Z | [WebSocketApp]: Registering RunWS.js
+2019-10-27T02:38:28.092Z | [WebSocketApp]: Registering TileServerWS.js
+2019-10-27T02:38:28.103Z | [WebSocketApp]: Registering TopKek.js
+2019-10-27T02:38:28.110Z | [Server]: App listening on port 80!
