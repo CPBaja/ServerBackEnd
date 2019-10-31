@@ -14,6 +14,15 @@ class BlockParser extends stream.Transform {
         this.packetBuffer = undefined;
     }
 
+    //transforms streams of binary into stream of sensor objects:
+    /*
+    {
+        time: ,
+        sensId: value,
+        sensId1: value1,
+        sensId2: value2,
+    }
+     */
     _transform(chunk, encoding, next) {
         this.packetBuffer = this.packetBuffer ? Buffer.concat([this.packetBuffer, chunk]) : chunk;
 

@@ -1,10 +1,12 @@
-2019-10-27T05:23:12.734Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-10-27T05:23:12.735Z | [Express]: Registering ServerEvents.js
-2019-10-27T05:23:12.738Z | [Express]: Registering Statics.js
-2019-10-27T05:23:12.740Z | [Express]: Registering TileServer.js
-2019-10-27T05:23:12.970Z | [WSS]: Starting WSS
-2019-10-27T05:23:12.970Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-10-27T05:23:12.970Z | [WebSocketApp]: Registering TopKek.js
-2019-10-27T05:23:12.971Z | [WebSocketApp]: Registering WSData.js
-2019-10-27T05:23:12.972Z | [WebSocketApp]: Registering WSTileServer.js
-2019-10-27T05:23:12.992Z | [Server]: App listening on port 80!
+2019-10-31T05:18:39.496Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-10-31T05:18:39.497Z | [Express]: Registering ServerEvents.js
+2019-10-31T05:18:39.498Z | [Express]: Registering Statics.js
+2019-10-31T05:18:39.500Z | [Express]: Registering TileServer.js
+2019-10-31T05:18:39.670Z | [WSS]: Starting WSS
+2019-10-31T05:18:39.671Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-10-31T05:18:39.671Z | [WebSocketApp]: Registering TopKek.js
+2019-10-31T05:18:39.672Z | [WebSocketApp]: Registering WSData.js
+2019-10-31T05:18:39.673Z | [WebSocketApp]: Registering WSTileServer.js
+2019-10-31T05:18:39.689Z | [Server]: App listening on port 80!
+2019-10-31T05:18:40.704Z | [Data]: DB connected.
+2019-10-31T05:18:40.714Z | [Data]: [object Object]

@@ -1,9 +1,6 @@
 const http = require("http");
-const webSocketServer = require("./WebSocketServer.js");
 const express = require("express");
 const log = require(logger)("Server");
-const webSocket = require("ws");
-
 
 const port = process.env.HTTP_PORT;
 
