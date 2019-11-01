@@ -13,10 +13,15 @@ global["absPath"] = function(...args){
 require("./Logger");
 
 /*DB SETUP+START*/
-require("./Data.js");
+require("./DB.js").initialize()
+
+    .then(() => require("./DataLoader.js").initialize())
 
 /*HTTP SERVER SETUP + START*/
-require("./Server");
+    .then(() => require("./Server"));
+
+
+
 
 
 

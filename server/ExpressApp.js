@@ -10,6 +10,16 @@ module.exports = (expressApp) => {
     registerExpressHandlers(path.join(__dirname, "./HttpPathHandlers"), expressApp);
 };
 
+class ExpressApp {
+    constructor() {
+
+    }
+
+    async initialize(){
+
+    }
+}
+
 function registerExpressHandlers(dir, app){
     log.info("REGISTERING HTTP HANDLERS:");
     let files = fs.readdirSync(dir);
