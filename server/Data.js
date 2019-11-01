@@ -2,13 +2,14 @@ const fs = require("graceful-fs");
 const path = require("path");
 const log = require(logger)("Data");
 const Mongo = require("mongodb").MongoClient;
+const sp = require("synchronized-promise");
 
-const MongoUrl = "mongodb://localhost:27017/";
+const MongoUrl = "mongodb//localhost:27017/";
 class Data {
 
     constructor() {
-        Mongo.connect(MongoUrl, { useUnifiedTopology: true })
-            .then((db) => this.dbConnected(db), (err) => {log.error("Database Connection Failed!!"); log.error(err)});
+        log.info("Attempting database connection...");
+        sp(this.connectToDb)(MongoUrl);
     }
 
     dbConnected(db){
@@ -20,6 +21,12 @@ class Data {
        db.close();
     }
 
+    async connectToDb(url){
+        await Mongo.connect(MongoUrl, {useUnifiedTopology: true})
+            .then((db) => this.dbConnected(db),
+                err => {log.error(err); process.exit();}
+            )
+    }
 }
 
 global["Data"] = new Data();
