@@ -9,19 +9,19 @@ global["absPath"] = function(...args){
     return path.resolve(...args);
 };
 
-/*LOGGER SETUP+STARTUP*/
-require("./Logger");
 
-/*DB SETUP+START*/
-require("./DB.js").initialize()
+async function loadModules(){
+    /*LOGGER SETUP+STARTUP*/
+    require("./Logger");
 
-    .then(() => require("./DataLoader.js").initialize())
+    /*DB SETUP+START*/
+    await require("./Data.js")();
 
-/*HTTP SERVER SETUP + START*/
-    .then(() => require("./Server"));
+    /*HTTP SERVER SETUP + START*/
+    require("./Server.js");
+}
 
+loadModules();
 
-
-
-
+//IK loading is funky - the DB uses pretty much only promises/async and bitches if I try to sync it. So, here we are.
 

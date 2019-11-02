@@ -1,14 +1,18 @@
-2019-11-01T16:58:15.147Z | [Data]: Attempting database connection...
-2019-11-01T16:58:16.170Z | [Data]: Setting up DB
-2019-11-01T16:58:16.172Z | [Data]: DB finished initializing.
-2019-11-01T16:58:16.173Z | [DataLoader]: Begin loading...
-2019-11-01T16:58:16.326Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-11-01T16:58:16.326Z | [Express]: Registering ServerEvents.js
-2019-11-01T16:58:16.328Z | [Express]: Registering Statics.js
-2019-11-01T16:58:16.330Z | [Express]: Registering TileServer.js
-2019-11-01T16:58:16.532Z | [WSS]: Starting WSS
-2019-11-01T16:58:16.533Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-11-01T16:58:16.533Z | [WebSocketApp]: Registering TopKek.js
-2019-11-01T16:58:16.534Z | [WebSocketApp]: Registering WSData.js
-2019-11-01T16:58:16.536Z | [WebSocketApp]: Registering WSTileServer.js
-2019-11-01T16:58:16.552Z | [Server]: App listening on port 80!
+2019-11-01T21:52:49.162Z | [Data]: Attempting database connection...
+2019-11-01T21:52:50.186Z | [Data]: Setting up DB
+2019-11-01T21:52:50.188Z | [Data]: DB finished initializing.
+2019-11-01T21:52:50.196Z | [DataLoader]: Begin loading...
+2019-11-01T21:52:50.196Z | [DataLoader]: Scanning and ingesting...
+2019-11-01T21:52:50.203Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,POZO-3.TXT
+2019-11-01T21:52:50.203Z | [DataLoader]: Will ingest: F0.BIN
+2019-11-01T21:52:50.204Z | [BinIngester]: Beginning ingestion for F0.BIN
+2019-11-01T21:52:50.351Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-11-01T21:52:50.352Z | [Express]: Registering ServerEvents.js
+2019-11-01T21:52:50.354Z | [Express]: Registering Statics.js
+2019-11-01T21:52:50.356Z | [Express]: Registering TileServer.js
+2019-11-01T21:52:50.554Z | [WSS]: Starting WSS
+2019-11-01T21:52:50.555Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-11-01T21:52:50.556Z | [WebSocketApp]: Registering TopKek.js
+2019-11-01T21:52:50.557Z | [WebSocketApp]: Registering WSData.js
+2019-11-01T21:52:50.558Z | [WebSocketApp]: Registering WSTileServer.js
+2019-11-01T21:52:50.573Z | [Server]: App listening on port 80!

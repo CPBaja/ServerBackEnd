@@ -3,6 +3,9 @@
     <words>
       <w>appdir</w>
       <w>coord</w>
+      <w>ingestable</w>
+      <w>ingester</w>
+      <w>ingesters</w>
       <w>itime</w>
       <w>mapbox</w>
     </words>
