@@ -1,5 +1,3 @@
-const low = require('lowdb');
-const async = require('lowdb/adapters/FileAsync');
 const stream = require("stream");
 const fs = require("fs");
 

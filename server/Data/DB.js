@@ -25,6 +25,7 @@ class DB {
         this.cRuns = this.dbBaja.collection("runs");
         this.cTiles = this.dbBaja.collection("tiles");
         this.cRunMeta = this.dbBaja.collection("runmeta");
+        this.cRunMeta.createIndex({time: 1, id: 1});
     }
 }
 

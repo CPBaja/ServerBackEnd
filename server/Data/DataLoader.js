@@ -46,12 +46,12 @@ class DataLoader {
         for(const file of toBeIngested){
             const fileType = path.extname(file).toLowerCase();
             let ingester = TypeIngesters[fileType];
-            await new ingester(file).start();
+            await new ingester(file, IngestDir).start();
         }
 
         this.locked = false; //Unlock it
 
-        //If somthing tried to update while locked, run again.
+        //If somthing tried to update while locked, recurse.
         if(this.updateNeeded) {this.scanAndIngest(); this.updateNeeded = false;}
 
     }
