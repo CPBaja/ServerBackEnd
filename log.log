@@ -1,18 +1,21 @@
-2019-11-03T00:00:09.883Z | [Data]: Attempting database connection...
-2019-11-03T00:00:10.918Z | [Data]: Setting up DB
-2019-11-03T00:00:10.925Z | [Data]: DB finished initializing.
-2019-11-03T00:00:10.942Z | [DataLoader]: Begin loading...
-2019-11-03T00:00:10.942Z | [DataLoader]: Scanning and ingesting...
-2019-11-03T00:00:11.953Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,POZO-3.TXT
-2019-11-03T00:00:11.954Z | [DataLoader]: Will ingest: F0.BIN
-2019-11-03T00:00:11.955Z | [BinIngester]: Beginning ingestion for F0.BIN
-2019-11-03T00:00:12.154Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-11-03T00:00:12.155Z | [Express]: Registering ServerEvents.js
-2019-11-03T00:00:12.157Z | [Express]: Registering Statics.js
-2019-11-03T00:00:12.160Z | [Express]: Registering TileServer.js
-2019-11-03T00:00:12.457Z | [WSS]: Starting WSS
-2019-11-03T00:00:12.458Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-11-03T00:00:12.459Z | [WebSocketApp]: Registering TopKek.js
-2019-11-03T00:00:12.460Z | [WebSocketApp]: Registering WSData.js
-2019-11-03T00:00:12.461Z | [WebSocketApp]: Registering WSTileServer.js
-2019-11-03T00:00:12.487Z | [Server]: App listening on port 80!
+2019-11-04T02:43:29.224Z | [Data]: Attempting database connection...
+2019-11-04T02:43:30.252Z | [Data]: Setting up DB
+2019-11-04T02:43:30.264Z | [Data]: DB finished initializing.
+2019-11-04T02:43:30.275Z | [DataLoader]: Begin loading...
+2019-11-04T02:43:30.403Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-11-04T02:43:30.404Z | [Express]: Registering ServerEvents.js
+2019-11-04T02:43:30.405Z | [Express]: Registering Statics.js
+2019-11-04T02:43:30.407Z | [Express]: Registering TileServer.js
+2019-11-04T02:43:30.592Z | [WSS]: Starting WSS
+2019-11-04T02:43:30.593Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-11-04T02:43:30.593Z | [WebSocketApp]: Registering TopKek.js
+2019-11-04T02:43:30.594Z | [WebSocketApp]: Registering WSData.js
+2019-11-04T02:43:30.595Z | [WebSocketApp]: Registering WSTileServer.js
+2019-11-04T02:43:30.612Z | [Server]: App listening on port 80!
+2019-11-04T02:43:31.619Z | [DataLoader]: Found 1 uncompleted ingests: 2
+2019-11-04T02:43:32.117Z | [DataLoader]: Scanning and ingesting...
+2019-11-04T02:43:32.119Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,F1.BIN,F2.BIN,POZO-3.TXT
+2019-11-04T02:43:32.119Z | [DataLoader]: Will ingest: F2.BIN
+2019-11-04T02:43:32.123Z | [BinIngester]: Beginning ingestion for F2.BIN. Size on disk is 7.1 MB. This will take approximatly 8 seconds.
+2019-11-04T02:43:41.877Z | [BinIngester]: Wrote F2.BIN in 9754ms
+2019-11-04T02:43:41.880Z | [DataLoader]: Finished file ingest session.

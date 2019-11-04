@@ -3,3 +3,4 @@
 tiles/*
 !tiles/.gitkeep
 !ingest/.gitkeep
+ingest/0_kendall_long.BIN

@@ -2,6 +2,7 @@ const log = require(logger)("Data");
 const Mongo = require("mongodb").MongoClient;
 
 const MongoUrl = "mongodb://localhost:27017";
+
 class DB {
 
     constructor() {
@@ -13,17 +14,22 @@ class DB {
         log.info("Attempting database connection...");
         await Mongo.connect(MongoUrl, {useUnifiedTopology: true})
             .then(this.setupDb.bind(this),
-                err => {log.error(err); process.exit();}
+                err => {
+                    log.error(err);
+                    process.exit();
+                }
             );
         log.info("DB finished initializing.");
     }
 
-    async setupDb(db){
+    async setupDb(db) {
         log.info("Setting up DB");
         this.db = db;
         this.dbBaja = db.db("baja");
-        this.cRuns = this.dbBaja.collection("runs");
-        this.cTiles = this.dbBaja.collection("tiles");
+        this.cRuns = await this.dbBaja.createCollection("runs",
+            {storageEngine: {wiredTiger: {configString: 'block_compressor=zlib'}}}
+        );
+            this.cTiles = this.dbBaja.collection("tiles");
         this.cRunMeta = this.dbBaja.collection("runmeta");
         this.cRunMeta.createIndex({time: 1, id: 1});
     }

@@ -21,10 +21,20 @@ class DataLoader {
 
     async initialize() {
         log.info("Begin loading...");
-        await this.scanAndIngest();
+        this.cleanDb().then(this.scanAndIngest.bind(this));
 
         new dirWatch(IngestDir).on("added", this.scanAndIngest.bind(this));
 
+    }
+
+    async cleanDb(){
+        const uncompletedIngests = await DB.cRunMeta.find({Completed: false}).toArray();
+        if(!uncompletedIngests){return;}
+        log.warn(`Found ${uncompletedIngests.length} uncompleted ingests: ${uncompletedIngests.map(v => v.id).toString()}`);
+        for(const ingest of uncompletedIngests){
+            await DB.cRuns.deleteOne({id: ingest.id});
+            await DB.cRunMeta.deleteOne({id: ingest.id});
+        }
     }
 
     async scanAndIngest() {
@@ -42,18 +52,24 @@ class DataLoader {
         log.info(`Found local files: ${ingestableFiles}`);
         log.info(`Will ingest: ${toBeIngested}`);
 
-        //Create an ingester for each file, and set them running.
+        //Create the ingester and start ingesting files synchronously, but async relative to the process.
+        // IE. one at a time.
+        this.startIngestion(toBeIngested);
+
+
+    }
+
+    async startIngestion(toBeIngested){
         for(const file of toBeIngested){
             const fileType = path.extname(file).toLowerCase();
             let ingester = TypeIngesters[fileType];
-            await new ingester(file, IngestDir).start();
+            await new ingester(file, IngestDir).ingest();
         }
 
-        this.locked = false; //Unlock it
-
-        //If somthing tried to update while locked, recurse.
+        this.locked = false; //Unlock the loader
         if(this.updateNeeded) {this.scanAndIngest(); this.updateNeeded = false;}
 
+        log.info("Finished file ingest session.");
     }
 }
 

@@ -4,7 +4,7 @@ const LineParser = require("./Pipes/LineParser.js");
 const SecondParser = require("./Pipes/SecondParser.js");
 const SensorParser = require("./Pipes/SensorParser.js");
 const ConsoleWriter = require("./Pipes/ConsoleWriter.js");
-const BlockParser = require("./Pipes/BlockParser.js");
+const BlockParser = require("./Pipes/BinParser.js");
 const CSVWriter = require("./Pipes/CSVWriter.js");
 const DbWriter = require("./Pipes/dbWriter");
 
