@@ -1,21 +1,29 @@
-2019-11-04T02:43:29.224Z | [Data]: Attempting database connection...
-2019-11-04T02:43:30.252Z | [Data]: Setting up DB
-2019-11-04T02:43:30.264Z | [Data]: DB finished initializing.
-2019-11-04T02:43:30.275Z | [DataLoader]: Begin loading...
-2019-11-04T02:43:30.403Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-11-04T02:43:30.404Z | [Express]: Registering ServerEvents.js
-2019-11-04T02:43:30.405Z | [Express]: Registering Statics.js
-2019-11-04T02:43:30.407Z | [Express]: Registering TileServer.js
-2019-11-04T02:43:30.592Z | [WSS]: Starting WSS
-2019-11-04T02:43:30.593Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-11-04T02:43:30.593Z | [WebSocketApp]: Registering TopKek.js
-2019-11-04T02:43:30.594Z | [WebSocketApp]: Registering WSData.js
-2019-11-04T02:43:30.595Z | [WebSocketApp]: Registering WSTileServer.js
-2019-11-04T02:43:30.612Z | [Server]: App listening on port 80!
-2019-11-04T02:43:31.619Z | [DataLoader]: Found 1 uncompleted ingests: 2
-2019-11-04T02:43:32.117Z | [DataLoader]: Scanning and ingesting...
-2019-11-04T02:43:32.119Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,F1.BIN,F2.BIN,POZO-3.TXT
-2019-11-04T02:43:32.119Z | [DataLoader]: Will ingest: F2.BIN
-2019-11-04T02:43:32.123Z | [BinIngester]: Beginning ingestion for F2.BIN. Size on disk is 7.1 MB. This will take approximatly 8 seconds.
-2019-11-04T02:43:41.877Z | [BinIngester]: Wrote F2.BIN in 9754ms
-2019-11-04T02:43:41.880Z | [DataLoader]: Finished file ingest session.
+2019-11-05T05:33:17.529Z | [Data]: Attempting database connection...
+2019-11-05T05:33:18.569Z | [Data]: Setting up DB
+2019-11-05T05:33:18.627Z | [Data]: DB finished initializing.
+2019-11-05T05:33:18.651Z | [DataLoader]: Begin loading...
+2019-11-05T05:33:18.979Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-11-05T05:33:18.981Z | [Express]: Registering ServerEvents.js
+2019-11-05T05:33:18.985Z | [Express]: Registering Statics.js
+2019-11-05T05:33:18.988Z | [Express]: Registering TileServer.js
+2019-11-05T05:33:19.329Z | [WSS]: Starting WSS
+2019-11-05T05:33:19.330Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-11-05T05:33:19.330Z | [WebSocketApp]: Registering TopKek.js
+2019-11-05T05:33:19.332Z | [WebSocketApp]: Registering WSData.js
+2019-11-05T05:33:19.333Z | [WebSocketApp]: Registering WSTileServer.js
+2019-11-05T05:33:19.354Z | [Server]: App listening on port 80!
+2019-11-05T05:33:20.376Z | [DataLoader]: Found 0 uncompleted ingests: 
+2019-11-05T05:33:20.379Z | [DataLoader]: Scanning and ingesting...
+2019-11-05T05:33:20.381Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,F1.BIN,F2.BIN,POZO-3.TXT
+2019-11-05T05:33:20.381Z | [DataLoader]: Will ingest: F0.BIN,F1.BIN,F2.BIN
+2019-11-05T05:33:20.396Z | [BinIngester]: Beginning ingestion for F0.BIN. Size on disk is 7.1 MB. This will take approximatly 8 seconds.
+2019-11-05T05:33:27.886Z | [BinIngester]: Wrote F0.BIN in 7490ms
+2019-11-05T05:33:27.902Z | [BinIngester]: Beginning ingestion for F1.BIN. Size on disk is 7.1 MB. This will take approximatly 8 seconds.
+2019-11-05T05:33:35.166Z | [BinIngester]: Wrote F1.BIN in 7263ms
+2019-11-05T05:33:35.174Z | [BinIngester]: Beginning ingestion for F2.BIN. Size on disk is 7.1 MB. This will take approximatly 8 seconds.
+2019-11-05T05:33:42.204Z | [BinIngester]: Wrote F2.BIN in 7031ms
+2019-11-05T05:33:42.209Z | [DataLoader]: Finished file ingest session.
+2019-11-05T05:38:12.822Z | [WSS]: Accepted connection from ::1
+2019-11-05T05:38:17.272Z | [WSS]: Received message from ::1: "kek"
+2019-11-05T05:38:17.276Z | [WSS]: Invalid message received from ::1: "kek"
+2019-11-05T05:38:57.962Z | [WSS]: Received message from ::1: "{"channel":"availableRunsRequest"}"

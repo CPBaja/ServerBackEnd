@@ -19,15 +19,20 @@ class BinIngester {
         /*First, insert all necessary data into the runMeta DB before actually loading all
         * While this is happening, DataLoader is blocked to prevent loading of the same file twice (If dirwatch is fired)
         * */
+        //Calculate largest ID to gen new one.
         let LargestIdDoc = await DB.cRunMeta.find({}).sort({"id": -1}).limit(1).toArray();
         LargestIdDoc = LargestIdDoc[0];
         const NewId = (LargestIdDoc && !isNaN(LargestIdDoc.id)) ? LargestIdDoc.id + 1 : 0;
-        console.log(NewId);
+
+        //Write new meta object
         const MetaObj = {
+            Realtime: false,
             Completed: false,
             OriginalFileName: this.file,
             TimeInserted: Date.now(),
-            id: NewId
+            id: NewId,
+            Name: "",
+            Comment: ""
         };
         await DB.cRunMeta.insertOne(MetaObj);
 

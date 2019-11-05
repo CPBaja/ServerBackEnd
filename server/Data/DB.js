@@ -2,6 +2,7 @@ const log = require(logger)("Data");
 const Mongo = require("mongodb").MongoClient;
 
 const MongoUrl = "mongodb://localhost:27017";
+const DropOnRun = true;
 
 class DB {
 
@@ -26,11 +27,17 @@ class DB {
         log.info("Setting up DB");
         this.db = db;
         this.dbBaja = db.db("baja");
-        this.cRuns = await this.dbBaja.createCollection("runs",
-            {storageEngine: {wiredTiger: {configString: 'block_compressor=zlib'}}}
-        );
-            this.cTiles = this.dbBaja.collection("tiles");
-        this.cRunMeta = this.dbBaja.collection("runmeta");
+
+        if(DropOnRun){
+            await this.dbBaja.dropCollection("runs");
+            await this.dbBaja.dropCollection("runmeta");
+        }
+
+        this.cRuns = await this.dbBaja.collection("runs");
+        this.cRunMeta = await this.dbBaja.collection("runmeta");
+
+
+
         this.cRunMeta.createIndex({time: 1, id: 1});
     }
 }

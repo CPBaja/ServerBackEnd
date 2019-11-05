@@ -28,6 +28,7 @@ class DataLoader {
     }
 
     async cleanDb(){
+        //Delete runs that haven't been completely ingested from the database
         const uncompletedIngests = await DB.cRunMeta.find({Completed: false}).toArray();
         if(!uncompletedIngests){return;}
         log.warn(`Found ${uncompletedIngests.length} uncompleted ingests: ${uncompletedIngests.map(v => v.id).toString()}`);
@@ -35,6 +36,11 @@ class DataLoader {
             await DB.cRuns.deleteOne({id: ingest.id});
             await DB.cRunMeta.deleteOne({id: ingest.id});
         }
+
+        //Update any runs that were realtime at unexpected shutdown to not be realtime anymore.
+        await DB.cRunMeta.updateMany({Realtime: true}, {$set: {Realtime: false}});
+
+
     }
 
     async scanAndIngest() {
