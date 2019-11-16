@@ -1,0 +1,50 @@
+Map Server API:
+    Request tile at http://<IP>:80/t/<z>/<x>/<y>
+        Guarenteed to return an image. Will send from local storage if tile exists, will proxy in from provider if it doesn't
+
+    Request download: WS OBJ:
+        {
+            channel: "downloadMapArea",
+            tileSet:"mapbox.satellite",
+            long1: <W bound>,
+            "lat1": <N bound>,
+            "long2": <E bound>,
+            "lat2":<S bound>
+        }
+        Will download the given area into local storage, meaning that the map area can be served offline.
+WS API:
+    Errors (Only sent after misuse of API - meant for debugging purposes):
+        {
+            channel: "error"
+            msg: "<errorMessage>"
+        }
+Data API:
+    Request available runs: WS OBJ:
+        {
+            channel: "availableRunsRequest"
+        }
+        On recieve, server will query DB and send one object as such:
+        {
+            [...runs]
+        }
+        A given index contains an existing run in the exact same format as a row in the "runmeta" collection.
+
+    Data request:
+        Client sends an object as follows every time a user modifies the timeline position or zoom.
+        {
+            range: [minimumTime, maximumTime],
+            density: n //How many points should be returned for the timerange
+            sensors: [...n], //Arr of sensor IDs to return. OPTIONAL!
+            runId: <n>
+        }
+
+        Returns a shit ton of these bad boys, each of which represents a single point.
+        {
+            time: n,
+            data:[
+                sensorId: value
+            ],
+            realtime: t/f,
+            limits: [lowerTimeLimit, upperTimeLimit],
+            radius: n, //Gives a time radius the point covers. Any pre-existing points in this range should be deleted.
+        }

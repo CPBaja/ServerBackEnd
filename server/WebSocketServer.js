@@ -6,6 +6,7 @@
 const log = require(logger)("WSS");
 const EventEmitter = require("events");
 const webSocket = require("ws");
+const DataDispatcher = require("./Data/DataDispatcher");
 
 
 class WebSocketServer extends EventEmitter{
@@ -18,6 +19,7 @@ class WebSocketServer extends EventEmitter{
 
     connection(wss, ws){
         log.http(`Accepted connection from ${ws._socket.remoteAddress}`);
+
         /*Add our custom crap to the socket*/
         ws["sendNotification"] = function(type, header, message){
           this.send(JSON.stringify({
@@ -32,6 +34,16 @@ class WebSocketServer extends EventEmitter{
           object.channel = channel; //Set the channel on the object
           this.send(JSON.stringify(object));
         };
+
+        ws["sendError"] = function (msg) {
+            log.warn(`Client Fuckup: "${msg}"`);
+            this.sendObject("error", {msg: msg});
+        };
+
+        ws["dispatcher"] = new DataDispatcher(ws);
+       // console.log(JSON.stringify({channel: "dataRequest"}));
+
+
 
 
 
@@ -53,7 +65,8 @@ class WebSocketServer extends EventEmitter{
                 this.emit("noChannel", wss, ws, data);
             }
         }catch (e) {
-            log.warn(`Invalid message received from ${ws._socket.remoteAddress}: "${data}"`);
+            log.warn(`A websocket errored: ${ws._socket.remoteAddress}: "${data}"`);
+            log.warn(e);
             this.emit("parseError", wss, ws, data);
         }
     }

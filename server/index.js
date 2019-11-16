@@ -23,5 +23,12 @@ async function loadModules(){
 
 loadModules();
 
+console.log(JSON.stringify({
+    channel: "dataRequest",
+    range: [0,1],
+    runId: 0,
+    density: 10,
+
+}));
 //IK loading is funky - the DB uses pretty much only promises/async and bitches if I try to sync it. So, here we are.
 

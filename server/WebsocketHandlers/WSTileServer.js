@@ -119,6 +119,7 @@ module.exports = (webSocketServer) => {
     });
 };
 
+/*
 console.log(JSON.stringify({
     channel:"downloadMapArea",
     tileSet: "mapbox.satellite",
@@ -127,7 +128,7 @@ console.log(JSON.stringify({
     long2: -120.6481,
     lat2: 35.2966
 }));
-
+*/
 
 
 

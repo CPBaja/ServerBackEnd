@@ -2,7 +2,7 @@ const log = require(logger)("Data");
 const Mongo = require("mongodb").MongoClient;
 
 const MongoUrl = "mongodb://localhost:27017";
-const DropOnRun = true;
+const DropOnRun = false;
 
 class DB {
 
