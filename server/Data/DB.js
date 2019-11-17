@@ -35,10 +35,8 @@ class DB {
 
         this.cRuns = await this.dbBaja.collection("runs");
         this.cRunMeta = await this.dbBaja.collection("runmeta");
-
-
-
-        this.cRunMeta.createIndex({time: 1, id: 1});
+        await this.cRuns.createIndex({id: 1, time: 1});
+        await this.cRunMeta.createIndex({time: 1, id: 1});
     }
 }
 

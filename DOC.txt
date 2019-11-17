@@ -47,6 +47,5 @@ Data API:
                 sensorId: value
             ],
             realtime: t/f,
-            limits: [lowerTimeLimit, upperTimeLimit],
             radius: n, //Gives a time radius the point covers. Any pre-existing points in this range should be deleted.
         }
