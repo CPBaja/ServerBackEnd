@@ -15,10 +15,13 @@ module.exports = (webSocketServer) => {
 
   webSocketServer.on("dataRequest", (wss, ws, data) => {
         /*Run Verification*/
-      if(!(data.density || data.range || data.runId)){
+      if(!(data.density || data.range)){
           ws.sendError("Invalid data request! Missing density or range.");
           return;
       }
+
+      //!== undefined because JS FUCKING TYPE COERSION! 0 is false, but is valid val for us.
+      if(data.runId !== undefined){ws.dispatcher.setRunId(data.runId)}
       ws.dispatcher.setFrame(data.range, data.density);
   });
 

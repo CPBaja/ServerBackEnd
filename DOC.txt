@@ -32,14 +32,16 @@ Data API:
     Data request:
         Client sends an object as follows every time a user modifies the timeline position or zoom.
         {
+            channel: "dataRequest",
             range: [minimumTime, maximumTime],
             density: n //How many points should be returned for the timerange
             sensors: [...n], //Arr of sensor IDs to return. OPTIONAL!
-            runId: <n>
+            runId: n,
         }
 
         Returns a shit ton of these bad boys, each of which represents a single point.
         {
+            channel: "dataRequest",
             time: n,
             data:[
                 sensorId: value

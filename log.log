@@ -1,21 +1,23 @@
-2019-11-16T10:35:38.284Z | [Data]: Attempting database connection...
-2019-11-16T10:35:39.308Z | [Data]: Setting up DB
-2019-11-16T10:35:39.314Z | [Data]: DB finished initializing.
-2019-11-16T10:35:39.324Z | [DataLoader]: Begin loading...
-2019-11-16T10:35:39.459Z | [Express]: REGISTERING HTTP HANDLERS:
-2019-11-16T10:35:39.459Z | [Express]: Registering ServerEvents.js
-2019-11-16T10:35:39.461Z | [Express]: Registering Statics.js
-2019-11-16T10:35:39.463Z | [Express]: Registering TileServer.js
-2019-11-16T10:35:39.651Z | [WSS]: Starting WSS
-2019-11-16T10:35:39.651Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
-2019-11-16T10:35:39.652Z | [WebSocketApp]: Registering TopKek.js
-2019-11-16T10:35:39.653Z | [WebSocketApp]: Registering WSData.js
-2019-11-16T10:35:39.654Z | [WebSocketApp]: Registering WSTileServer.js
-2019-11-16T10:35:39.669Z | [Server]: App listening on port 80!
-2019-11-16T10:35:40.678Z | [DataLoader]: Found 0 uncompleted ingests: 
-2019-11-16T10:35:40.681Z | [DataLoader]: Scanning and ingesting...
-2019-11-16T10:35:40.683Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,F1.BIN,F2.BIN,POZO-3.TXT
-2019-11-16T10:35:40.684Z | [DataLoader]: Will ingest: 
-2019-11-16T10:35:40.684Z | [DataLoader]: Finished file ingest session.
-2019-11-16T10:35:55.376Z | [WSS]: Accepted connection from ::1
-2019-11-16T10:36:01.289Z | [WSS]: Received message from ::1: "{"channel":"dataRequest","range":[0,1],"runId":0,"density":10}"
+2019-11-17T01:09:48.929Z | [Data]: Attempting database connection...
+2019-11-17T01:09:49.958Z | [Data]: Setting up DB
+2019-11-17T01:09:49.966Z | [Data]: DB finished initializing.
+2019-11-17T01:09:49.977Z | [DataLoader]: Begin loading...
+2019-11-17T01:09:50.163Z | [Express]: REGISTERING HTTP HANDLERS:
+2019-11-17T01:09:50.164Z | [Express]: Registering ServerEvents.js
+2019-11-17T01:09:50.169Z | [Express]: Registering Statics.js
+2019-11-17T01:09:50.172Z | [Express]: Registering TileServer.js
+2019-11-17T01:09:50.431Z | [WSS]: Starting WSS
+2019-11-17T01:09:50.432Z | [WebSocketApp]: REGISTERING WEBSOCKET HANDLERS:
+2019-11-17T01:09:50.432Z | [WebSocketApp]: Registering TopKek.js
+2019-11-17T01:09:50.434Z | [WebSocketApp]: Registering WSData.js
+2019-11-17T01:09:50.435Z | [WebSocketApp]: Registering WSTileServer.js
+2019-11-17T01:09:50.452Z | [Server]: App listening on port 80!
+2019-11-17T01:09:51.462Z | [DataLoader]: Found 0 uncompleted ingests: 
+2019-11-17T01:09:51.465Z | [DataLoader]: Scanning and ingesting...
+2019-11-17T01:09:51.467Z | [DataLoader]: Found local files: .gitkeep,1.txt,2.txt,F0.BIN,F1.BIN,F2.BIN,POZO-3.TXT
+2019-11-17T01:09:51.468Z | [DataLoader]: Will ingest: 
+2019-11-17T01:09:51.468Z | [DataLoader]: Finished file ingest session.
+2019-11-17T01:09:52.656Z | [WSS]: Accepted connection from ::1
+2019-11-17T01:09:54.210Z | [WSS]: Received message from ::1: "{"channel":"dataRequest","range":[0.5,1.5],"runId":0,"density":10}"
+2019-11-17T01:10:07.363Z | [WSS]: Received message from ::1: "{"channel":"dataRequest","range":[0,1],"runId":0,"density":10}"
+2019-11-17T01:10:07.376Z | [WSS]: Received message from ::1: "{"channel":"dataRequest","range":[0,1],"runId":0,"density":10}"

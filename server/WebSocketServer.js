@@ -36,7 +36,6 @@ class WebSocketServer extends EventEmitter{
         };
 
         ws["sendError"] = function (msg) {
-            log.warn(`Client Fuckup: "${msg}"`);
             this.sendObject("error", {msg: msg});
         };
 
