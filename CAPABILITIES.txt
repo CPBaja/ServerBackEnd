@@ -1,0 +1,58 @@
+Overall Idea:
+    The idea for this app is to provide an easy way for multiple team members to view past and present information about
+    the Baja car in an easily digestible way. After considering multiple options we eventually decided to create an
+    application that would aggregate all car data and make it accessible from any web browser. This application consists
+    of two parts: The "backend" and the "frontend". The backend is a server that is hosted on a computer (ex. my laptop),
+    and is the part that actually interfaces with the car and deals with the data it creates. The frontend is the web
+    page that will actually display the data to a user. A good analogy for this relationship is TV:
+
+    TV Camera ---> TV station ---> TV ----------> Person
+      (DAQ)         (Backend)    (FrontEnd)   (Baja team member)
+
+
+Terminology:
+    Host Computer - The computer running the server. May or may not have a connection to the internet during competition.
+
+The following explains what I have created for the backend, and the purpose/capabilities of each part.
+
+/-----Implemented Modules-----/
+Tile Server:
+    Will be used to serve maps on the website (like google maps) without an internet connection.
+    Will allow us to plot the car's position out in the field during competition.
+    Current capabilities:
+        Able to serve map tiles (256x256 images) from multiple sources:
+            If a given tile has been downloaded locally, it is served from the host computer's disk.
+            If a tile isn't available locally, it is downloaded from a given tile provider (like google.com)
+            If all fails, a fun error image is sent :)
+        Able to download a given area to make it available for offline serving.
+            Like the offline maps feature in the google maps app, if you've used it.
+    TODO:
+        Use the database to store tile images. At the moment they're simply stored in a folder on the host machine. (oops)
+
+Static Server:
+    Simple - it serves static assets to connected clients. Will eventually serve the front end.
+
+Logging:
+    Pretty (?) robust logging has been implemented. I include the time+date, as well as module name for debugging.
+    All logs are written to disk as well as to the console.
+
+Data:
+    Ingest:
+        Current Capabilities:
+            Able to read files and "ingest" them into the MongoDB database for easy access in other parts of the server.
+            Able to read raw .BIN files from the teensy.
+            Can easily be extended to read other formats.
+        TODO:
+            Support for realtime ingest needs to be added.
+    Serving:
+        API for getting data about all available runs
+        API for serving actual data in a decoupled way that (should) keep stuff relatively simple on the front end.
+    TODO:
+        Implement serving of realtime data.
+        Implement APIs for other stuff Nathan wants.
+
+Takeaways:
+    I've learned a lot while coding this whole thing, and certainly would change some things if I were to start over.
+    Overall, though, the modular way I structured this app has kept it (and will hopefully continue to) manageable.
+    As it stands, it should be half-stable and is ready (enough) to start getting some real front end stuff cooking.
+
