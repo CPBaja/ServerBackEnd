@@ -35,17 +35,17 @@ Data API:
             channel: "dataRequest",
             range: [minimumTime, maximumTime],
             density: n //How many points should be returned for the timerange
-            sensors: [...n], //Arr of sensor IDs to return. OPTIONAL!
-            runId: n,
+            sensors: [...n], //Arr of sensor IDs to return. OPTIONAL! (Not implemented yet)
+            runId: n, //
         }
 
-        Returns a shit ton of these bad boys, each of which represents a single point.
+        The server independantly sends a bunch of these bad bois , one for each requested point.
         {
             channel: "dataRequest",
             time: n,
-            data:[
+            data:{
                 sensorId: value
-            ],
+            },
             realtime: t/f,
             radius: n, //Gives a time radius the point covers. Any pre-existing points in this range should be deleted.
         }
