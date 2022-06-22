@@ -12,7 +12,7 @@
   "description": "",
   "dependencies": {
     "app-root-path": "^2.2.1",
-    "async": "^3.1.0",
+    "async": "^3.2.2",
     "cookie-parser": "^1.4.4",
     "deasync": "^0.1.15",
     "dotenv": "^8.1.0",
