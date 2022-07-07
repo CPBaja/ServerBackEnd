@@ -21,7 +21,7 @@
     "image-downloader": "^3.5.0",
     "ip": "^1.1.5",
     "lowdb": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongodb": "^3.3.3",
     "mt-downloader": "^2.2.2",
     "request": "^2.88.0",
