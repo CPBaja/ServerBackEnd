@@ -16,7 +16,7 @@
     "cookie-parser": "^1.4.4",
     "deasync": "^0.1.15",
     "dotenv": "^8.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graceful-fs": "^4.2.2",
     "image-downloader": "^3.5.0",
     "ip": "^1.1.5",
